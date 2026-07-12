@@ -1,0 +1,253 @@
+@import "tailwindcss";
+
+/*
+ * Theme: follows the system by default; the header toggle sets
+ * data-theme="light" | "dark" on <html> to override it.
+ * Every color is defined once with light-dark(light, dark).
+ */
+html {
+  color-scheme: light dark;
+  scroll-behavior: smooth;
+  /* Hide the native scrollbar — the red progress bar on the right edge
+     (ScrollProgress.tsx) plays that role. */
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+html[data-theme="light"] {
+  color-scheme: light;
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+:root {
+  /* Dark mode is "the same paper with the lights off": every dark value is
+     warm (charcoal-brown, warm off-white ink) so both themes share the
+     paper-and-red identity. Don't reintroduce blue-tinted darks. */
+  --paper: light-dark(#faf9f6, #121110);
+  --surface: light-dark(#ffffff, #1a1816);
+  --paper-deep: light-dark(#f0eee8, #211e1a);
+  /* Dark borders are warm-white-alpha hairlines: elevation reads from
+     surface lightness, not from heavy outlines or shadows. */
+  --line: light-dark(#e4e1d8, rgba(245, 238, 226, 0.08));
+  --fg: light-dark(#18171d, #f1eee8);
+  --fg-muted: light-dark(#585760, #a6a199);
+  --fg-faint: light-dark(#94939b, #6f6a61);
+  /* Accent is desaturated/lifted on dark so it doesn't vibrate on near-black. */
+  --accent: light-dark(#d91f2f, #f04e57);
+  --accent-soft: light-dark(#a8121f, #ff6d70);
+
+  /* Motion tokens — the only curves/durations the site uses.
+     Reveals: 550ms expo-out. Micro-interactions: 200ms ease-out.
+     Hovers: 150ms ease (Tailwind duration-150). */
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  --ac: light-dark(#178a4c, #2fbf71);
+  /* Codeforces-style rating colors for level badges */
+  --cf-gray: light-dark(#75747c, #a29d95);
+  --cf-green: light-dark(#1f9e4d, #2fbf71);
+  --cf-blue: light-dark(#2364e8, #6aa2ff);
+  --cf-red: light-dark(#d92c2c, #ff6159);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-paper-deep: var(--paper-deep);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-ac: var(--ac);
+  --color-cf-gray: var(--cf-gray);
+  --color-cf-green: var(--cf-green);
+  --color-cf-blue: var(--cf-blue);
+  --color-cf-red: var(--cf-red);
+
+  --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-display: var(--font-departure-mono), ui-monospace, monospace;
+}
+
+/* Shiki code highlighting: transparent bg, dark palette when dark theme. */
+.shiki {
+  background-color: transparent !important;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .shiki,
+  html:not([data-theme="light"]) .shiki span {
+    color: var(--shiki-dark) !important;
+  }
+}
+html[data-theme="dark"] .shiki,
+html[data-theme="dark"] .shiki span {
+  color: var(--shiki-dark) !important;
+}
+
+/*
+ * Sticky site chrome (SiteHeader.tsx). Scroll state arrives as data
+ * attributes: [data-scrolled] once the page has left the top, [data-hidden]
+ * while scrolling down. The border is always present (transparent at the
+ * top) so the header never changes height.
+ */
+.site-header {
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  transition:
+    background-color 150ms ease-out,
+    border-color 150ms ease-out,
+    box-shadow 150ms ease-out,
+    transform 200ms ease-out;
+}
+.site-header[data-scrolled] {
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px light-dark(rgba(8, 8, 8, 0.05), transparent);
+}
+/* Retract to a hairline: the 1px border plus the 2px ScrollProgress bar stay
+   peeking at the viewport edge — the red line is the site's only scroll
+   indicator (native scrollbar is hidden above) and must never disappear. */
+.site-header[data-hidden] {
+  transform: translateY(calc(-100% + 3px));
+}
+/* Keyboard focus anywhere in the header brings it back. */
+.site-header:focus-within {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header {
+    transition-property: background-color, border-color, box-shadow;
+  }
+}
+
+/* Desktop nav: a muted underline wipes in from the left on hover/focus.
+   The accent-red hairline is reserved for the active page (SiteHeader.tsx). */
+.nav-underline {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 150ms ease-out;
+}
+.nav-link:hover .nav-underline,
+.nav-link:focus-visible .nav-underline {
+  transform: scaleX(1);
+}
+
+/* Soft-shadow content panel (about box, accordion rows).
+   No shadow on dark — the lighter surface color is the elevation. */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px light-dark(rgba(8, 8, 8, 0.06), transparent);
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+  line-height: 1.15;
+}
+
+/* Mono section label ("01 // what we do"). All-caps-adjacent small mono
+   needs extra tracking to read cleanly. */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--fg-faint);
+}
+
+/*
+ * Scroll reveals (AnimatedSection.tsx). Server HTML ships fully visible;
+ * the client marks below-fold blocks "pending" and an IntersectionObserver
+ * flips them to "in". Gated on prefers-reduced-motion so reduced-motion
+ * users (and any environment without the observer) always see content.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal="pending"] {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  [data-reveal="in"] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.55s var(--ease-reveal) var(--reveal-delay, 0ms),
+      transform 0.55s var(--ease-reveal) var(--reveal-delay, 0ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--paper);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Grid stays quiet behind copy and carries more weight around the hero gem.
+   Dark alpha runs well below light: white hairlines on near-black read far
+   heavier than the same alpha of ink on cream. */
+.bg-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      light-dark(rgba(24, 23, 29, 0.06), rgba(241, 238, 232, 0.022)) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      light-dark(rgba(24, 23, 29, 0.06), rgba(241, 238, 232, 0.022)) 1px,
+      transparent 1px
+    );
+  background-size: 44px 44px;
+  mask-image: radial-gradient(
+    ellipse 84% 100% at 66% 46%,
+    black 24%,
+    rgba(0, 0, 0, 0.68) 66%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+@media (max-width: 1023px) {
+  .bg-grid {
+    mask-image: radial-gradient(
+      ellipse 88% 64% at 50% 72%,
+      black 24%,
+      rgba(0, 0, 0, 0.46) 66%,
+      transparent 100%
+    );
+  }
+}
+
+/* Spinning 3D hexagonal gem logo (Logo3D.tsx). */
+.gem-spin {
+  transform-style: preserve-3d;
+  animation: gem-spin 12s linear infinite;
+}
+@keyframes gem-spin {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gem-spin {
+    animation: none;
+    transform: rotateY(-25deg);
+  }
+}
