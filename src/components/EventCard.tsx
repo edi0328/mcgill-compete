@@ -74,7 +74,7 @@ export function EventCard({ event }: { event: ClubEvent }) {
     .join(" · ");
 
   return (
-    <article className="grid gap-x-6 gap-y-1.5 py-5 sm:grid-cols-[11ch_1fr]">
+    <article className="grid gap-x-6 gap-y-2 py-5 sm:grid-cols-[11ch_1fr]">
       <div className="font-mono leading-relaxed">
         <span className="block text-[13px] font-medium text-fg">{when1}</span>
         {when2 && <span className="block text-[12px] text-fg-faint">{when2}</span>}
@@ -92,9 +92,9 @@ export function EventCard({ event }: { event: ClubEvent }) {
           {event.description}
         </p>
         {place && (
-          <p className="mt-1.5 pl-7 font-mono text-[12px] text-fg-faint">{place}</p>
+          <p className="mt-2 pl-7 font-mono text-[12px] text-fg-faint">{place}</p>
         )}
-        {links.length > 0 && <InlineLinks links={links} className="mt-2.5 pl-7" />}
+        {links.length > 0 && <InlineLinks links={links} className="mt-2 pl-7" />}
       </div>
     </article>
   );

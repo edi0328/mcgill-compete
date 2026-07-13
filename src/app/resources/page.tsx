@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { TransitionLink as Link } from "@/components/TransitionLink";
 import {
   AnimatedSection,
   StaggerGrid,
@@ -36,8 +36,6 @@ export default function ResourcesPage() {
   return (
     <>
       <Section
-        number="01"
-        label="start here"
         title="Getting started"
         intro="Four steps from zero to your first contest."
       >
@@ -46,8 +44,6 @@ export default function ResourcesPage() {
 
       <Section
         tone="surface"
-        number="02"
-        label="external"
         title="External resources"
         intro="The platforms and references we actually use."
       >
@@ -61,8 +57,6 @@ export default function ResourcesPage() {
       </Section>
 
       <Section
-        number="03"
-        label="roadmaps"
         title="Where to go next"
         intro="Two tracks, depending on where you are. Both assume you solve consistently between sessions."
       >
@@ -88,8 +82,6 @@ export default function ResourcesPage() {
 
       <Section
         tone="surface"
-        number="04"
-        label="templates"
         title="Code templates"
         intro="Copy-paste implementations in C++ and Python, each with an explanation and an example problem."
       >
@@ -111,8 +103,6 @@ export default function ResourcesPage() {
       </Section>
 
       <Section
-        number="05"
-        label="club materials"
         title="Problems & session archive"
         intro="Curated problems from past sessions — try them before reading the editorial — plus the slides and materials that go with them."
       >

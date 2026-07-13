@@ -28,7 +28,7 @@ export function CodeBlock({
 
   return (
     <div className="overflow-hidden rounded-lg border border-line bg-surface">
-      <div className="flex items-center justify-between border-b border-line px-2 py-1.5">
+      <div className="flex items-center justify-between border-b border-line px-2 py-2">
         <div className="flex">
           {variants.map((v, i) => (
             <button
@@ -37,7 +37,7 @@ export function CodeBlock({
                 setActive(i);
                 setCopied(false);
               }}
-              className={`rounded px-3 py-1.5 font-mono text-[12px] transition-colors ${
+              className={`rounded px-3 py-2 font-mono text-[12px] transition-colors ${
                 i === active
                   ? "bg-paper-deep text-fg"
                   : "text-fg-faint hover:text-fg-muted"
@@ -50,7 +50,7 @@ export function CodeBlock({
         <button
           onClick={copy}
           aria-label="Copy code"
-          className="flex items-center gap-1.5 rounded px-3 py-1.5 font-mono text-[12px] text-fg-faint transition-colors hover:text-fg"
+          className="flex items-center gap-2 rounded px-3 py-2 font-mono text-[12px] text-fg-faint transition-colors hover:text-fg"
         >
           {copied ? (
             <>

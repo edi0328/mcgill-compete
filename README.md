@@ -101,6 +101,19 @@ Search the repo for `[` to find them all. Currently:
 - [ ] Verified ICPC history in `hallOfFame.ts` (`[YEAR]`, `[TEAM_NAME]`, `[SOURCE_LINK]`, …)
 - [ ] Real session materials in `pastMaterials.ts` and problem-set links in `resources.ts`
 
+## Design System
+
+See [`src/docs/DESIGN_SYSTEM.md`](src/docs/DESIGN_SYSTEM.md) for comprehensive documentation on:
+- Typography scale, line-height, and character limits
+- Color system (light/dark modes with WCAG contrast ratios)
+- Spacing system (4px increments, responsive patterns)
+- Component specifications (buttons, links, inputs, cards, navigation)
+- Accessibility requirements (WCAG AAA targets, keyboard navigation, screen readers)
+- Animation guidelines and motion preferences
+- Implementation checklists for design, development, and QA phases
+
+This design system ensures consistency, accessibility, and maintainability across the site.
+
 ## Design notes (for the curious)
 
 - Fonts: Departure Mono (pixel display font for headings/wordmark, self-hosted

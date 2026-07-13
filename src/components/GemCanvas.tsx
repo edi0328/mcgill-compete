@@ -7,8 +7,9 @@ import * as THREE from "three";
 /**
  * The club gem in real 3D: hexagonal prism with pyramid caps, flat-shaded
  * McGill red, "CP" wrapped around the side faces. Auto-spins slowly; drag to
- * throw it. Loaded client-side only (see HeroVisuals.tsx) with the CSS gem
- * as fallback. Rendering pauses while offscreen or when the tab is hidden.
+ * throw it. Loaded client-side only (see HeroVisuals.tsx); fades in on its
+ * first WebGL frame so nothing else ever paints in its place. Rendering
+ * pauses while offscreen or when the tab is hidden.
  * Decorative — hidden from screen readers.
  */
 
@@ -120,6 +121,7 @@ function Gem() {
 export default function GemCanvas() {
   const wrapper = useRef<HTMLDivElement>(null);
   const [frameloop, setFrameloop] = useState<"always" | "never">("always");
+  const [ready, setReady] = useState(false);
 
   // Stop the render loop while the gem is offscreen or the tab is hidden.
   useEffect(() => {
@@ -148,13 +150,18 @@ export default function GemCanvas() {
     <div
       ref={wrapper}
       aria-hidden="true"
-      className="h-[270px] w-[270px] cursor-grab active:cursor-grabbing sm:h-[340px] sm:w-[330px]"
+      // pan-y: vertical swipes keep scrolling the page; horizontal drags
+      // reach the pointer handlers so touch users can spin the gem too.
+      className={`h-[270px] w-[270px] cursor-grab touch-pan-y transition-opacity duration-200 ease-out active:cursor-grabbing sm:h-[340px] sm:w-[330px] ${
+        ready ? "opacity-100" : "opacity-0"
+      }`}
     >
       <Canvas
         dpr={[1, 2]}
         frameloop={frameloop}
         camera={{ position: [0, 0.35, 3.9], fov: 38 }}
         gl={{ alpha: true, antialias: true }}
+        onCreated={() => setReady(true)}
       >
         <ambientLight intensity={1.1} />
         <directionalLight position={[4, 5, 6]} intensity={1.5} />

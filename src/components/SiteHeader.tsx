@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { TransitionLink as Link } from "@/components/TransitionLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -207,7 +207,7 @@ export function SiteHeader() {
                       href={item.href}
                       onClick={() => setOpen(false)}
                       aria-current={active ? "page" : undefined}
-                      className={`block rounded px-2 py-2.5 font-mono text-sm ${
+                      className={`block rounded px-2 py-2 font-mono text-sm ${
                         active ? "text-fg" : "text-fg-muted"
                       }`}
                     >

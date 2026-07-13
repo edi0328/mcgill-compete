@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import { MotionProvider } from "@/components/MotionProvider";
@@ -42,6 +43,9 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
+      // Lets Next force an instant scroll-to-top on route navigation (the
+      // view transition masks it) while keeping smooth in-page anchor scroll.
+      data-scroll-behavior="smooth"
       className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${departureMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
@@ -54,7 +58,13 @@ export default function RootLayout({
         />
         <MotionProvider>
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          {/* Cross-section navigations (TransitionLink) settle the whole
+              page in via "page-shell" (globals.css). Untyped transitions —
+              initial load, lazy reveals like the hero gem — resolve to
+              "none" and play nothing. Renders no DOM node; SSR unchanged. */}
+          <ViewTransition default={{ navigate: "page-shell", default: "none" }}>
+            <main className="flex-1">{children}</main>
+          </ViewTransition>
           <SiteFooter />
         </MotionProvider>
       </body>

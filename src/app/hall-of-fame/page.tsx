@@ -41,8 +41,6 @@ export default function HallOfFamePage() {
       </div>
 
       <Section
-        number="01"
-        label="world finals"
         title="ICPC World Finals"
         intro="McGill teams that reached the world stage."
       >
@@ -51,8 +49,6 @@ export default function HallOfFamePage() {
 
       <Section
         tone="surface"
-        number="02"
-        label="regionals"
         title="Regionals & NAC"
         intro="Results from the Northeast North America Regional and the North America Championship."
       >
@@ -60,8 +56,6 @@ export default function HallOfFamePage() {
       </Section>
 
       <Section
-        number="03"
-        label="timeline"
         title="Club timeline"
         intro="Milestones in McGill competitive programming."
       >
@@ -70,8 +64,6 @@ export default function HallOfFamePage() {
 
       {notableAlumni.length > 0 && (
         <Section
-          number="04"
-          label="alumni"
           title="Notable alumni"
           intro="Listed with their permission."
         >

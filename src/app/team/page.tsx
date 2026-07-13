@@ -17,8 +17,6 @@ export default function TeamPage() {
   return (
     <>
       <Section
-        number="01"
-        label="who we are"
         title="The team"
         intro={`${site.shortDescription} The ${activeYear} executive team runs the trainings and contests.`}
       >
@@ -32,7 +30,7 @@ export default function TeamPage() {
       </Section>
 
       {facultyAdvisor && (
-        <Section number="02" label="advisor" title="Faculty advisor" tone="surface">
+        <Section title="Faculty advisor" tone="surface">
           <div className="max-w-sm">
             <TeamMemberCard member={facultyAdvisor} />
           </div>
@@ -40,8 +38,6 @@ export default function TeamPage() {
       )}
 
       <Section
-        number="03"
-        label="contact"
         title="Get in touch"
         intro="Pick whichever channel fits."
       >
@@ -50,7 +46,7 @@ export default function TeamPage() {
             <StaggerItem key={c.category}>
               <div className="h-full rounded-lg border border-line bg-surface p-5">
                 <h3 className="font-semibold tracking-tight">{c.category}</h3>
-                <p className="mt-1.5 text-sm text-fg-muted">{c.description}</p>
+                <p className="mt-2 text-sm text-fg-muted">{c.description}</p>
                 <a
                   href={c.contact.includes("@") ? `mailto:${c.contact}` : c.contact}
                   className="mt-3 inline-block font-mono text-[13px] text-cf-blue hover:underline"

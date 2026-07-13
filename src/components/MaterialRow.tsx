@@ -27,7 +27,7 @@ export function MaterialRow({ material }: { material: PastMaterial }) {
           {material.week.toLowerCase()}
         </span>
       </div>
-      <div className="flex min-w-0 flex-wrap items-baseline justify-between gap-x-6 gap-y-1.5">
+      <div className="flex min-w-0 flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <span className="font-medium tracking-tight">{material.topic}</span>
           <LevelTag level={material.level} />

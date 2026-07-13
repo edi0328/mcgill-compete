@@ -9,7 +9,7 @@
 export const site = {
   name: "Compete McGill",
   shortDescription:
-    "McGill University's competitive programming club. We train for ICPC, run practice contests, and help anyone at McGill get better at solving hard problems fast.",
+    "McGill University's competitive programming club. We train for ICPC, run practice contests, and help students get better at solving hard problems fast.",
 
   /** Paragraphs for the "who we are" panel on the home page. */
   about: [

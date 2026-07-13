@@ -29,8 +29,6 @@ export default function SchedulePage() {
   return (
     <>
       <Section
-        number="01"
-        label="upcoming"
         title="Upcoming events"
         intro="Everything below also lands in the Discord. Announcements there are the source of truth for last-minute room changes."
       >
@@ -60,8 +58,6 @@ export default function SchedulePage() {
 
       <Section
         tone="surface"
-        number="02"
-        label="calendar"
         title="Club calendar"
         intro="Subscribe to get every session in your own calendar."
       >
@@ -71,8 +67,6 @@ export default function SchedulePage() {
       </Section>
 
       <Section
-        number="03"
-        label="rhythm"
         title="A typical week"
         intro="Exact days and rooms are confirmed at the start of each semester."
       >
@@ -97,8 +91,6 @@ export default function SchedulePage() {
 
       <Section
         tone="surface"
-        number="04"
-        label="archive"
         title="Past sessions"
         intro="Slides, problem sets, and recordings from previous semesters."
       >

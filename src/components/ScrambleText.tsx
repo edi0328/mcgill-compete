@@ -4,19 +4,20 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Gentle text-decrypt effect: each character shows a single glitch glyph for
- * a beat, then settles, sweeping left to right (~600ms total). Deterministic
+ * a beat, then settles, sweeping left to right (~715ms total). Deterministic
  * and deliberately weak — one brief shimmer, not a glitch storm. Plays once.
- * Used in exactly one place: the home hero H1.
+ * Used in exactly two places: the home hero H1 (immediate) and the home
+ * "what we do" section title (on scroll, via Section's `scramble` prop).
  * The full text renders immediately for no-JS users, screen readers, and
  * under prefers-reduced-motion; the animated string is one text node, so
  * words can never break mid-word during the effect.
  */
 
 const GLITCH_CHARS = "<>-_/\\*+";
-const CHAR_STAGGER_MS = 24; // when each character starts, left to right
-const CHAR_GLITCH_MS = 60; // how long a character glitches before settling
-const TOTAL_MS = 650;
-const SWAP_MS = 60; // one glyph swap per glitch window
+const CHAR_STAGGER_MS = 26.4; // when each character starts, left to right
+const CHAR_GLITCH_MS = 66; // how long a character glitches before settling
+const TOTAL_MS = 715;
+const SWAP_MS = 66; // one glyph swap per glitch window
 
 export function ScrambleText({
   text,

@@ -11,7 +11,7 @@ const levelColor: Record<EventLevel, string> = {
 export function LevelBadge({ level }: { level: EventLevel }) {
   return (
     <span
-      className={`inline-block rounded border px-2 py-0.5 font-mono text-[11px] ${levelColor[level]}`}
+      className={`inline-block rounded border px-2 py-1 font-mono text-[11px] ${levelColor[level]}`}
     >
       {level.toLowerCase()}
     </span>
@@ -36,7 +36,7 @@ export function LevelTag({ level }: { level: EventLevel }) {
 
 export function TypeBadge({ type }: { type: EventType | string }) {
   return (
-    <span className="inline-block rounded border border-line bg-paper-deep px-2 py-0.5 font-mono text-[11px] text-fg-muted">
+    <span className="inline-block rounded border border-line bg-paper-deep px-2 py-1 font-mono text-[11px] text-fg-muted">
       {type.toLowerCase()}
     </span>
   );
@@ -46,13 +46,13 @@ export function TypeBadge({ type }: { type: EventType | string }) {
 export function VerifyBadge({ verified }: { verified: boolean }) {
   if (verified) {
     return (
-      <span className="inline-block rounded border border-ac/40 px-2 py-0.5 font-mono text-[11px] text-ac">
+      <span className="inline-block rounded border border-ac/40 px-2 py-1 font-mono text-[11px] text-ac">
         verified
       </span>
     );
   }
   return (
-    <span className="inline-block rounded border border-accent/40 px-2 py-0.5 font-mono text-[11px] text-accent-soft">
+    <span className="inline-block rounded border border-accent/40 px-2 py-1 font-mono text-[11px] text-accent-soft">
       TODO: verify
     </span>
   );

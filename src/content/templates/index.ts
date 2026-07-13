@@ -109,3 +109,83 @@ export const topicTree: TopicNode[] = [
 export function templateBySlug(slug: string): AlgoTemplate | undefined {
   return templates.find((t) => t.slug === slug);
 }
+
+/*
+ * Navigation helpers. The tree is the single source of truth for hierarchy —
+ * `template.topic` is a loose display field that mixes levels (and doesn't
+ * always match tree node names), so breadcrumbs, related links, and
+ * prev/next must all derive from `topicTree` via these helpers.
+ */
+
+/** Sidebar-safe projection of the tree: names and slugs only, never code. */
+export interface NavLeaf {
+  slug: string;
+  name: string;
+}
+export interface NavGroup {
+  name: string;
+  children?: NavGroup[];
+  leaves?: NavLeaf[];
+}
+
+function toNav(node: TopicNode): NavGroup {
+  return {
+    name: node.name,
+    children: node.children?.map(toNav),
+    leaves: node.leaves?.map((slug) => ({
+      slug,
+      name: templateBySlug(slug)?.name ?? slug,
+    })),
+  };
+}
+export const sidebarNav: NavGroup[] = topicTree.map(toNav);
+
+/** Ancestor chain of tree nodes containing the slug, top-level topic first. */
+export function pathForSlug(slug: string): TopicNode[] {
+  const walk = (node: TopicNode, trail: TopicNode[]): TopicNode[] | null => {
+    const here = [...trail, node];
+    if (node.leaves?.includes(slug)) return here;
+    for (const child of node.children ?? []) {
+      const found = walk(child, here);
+      if (found) return found;
+    }
+    return null;
+  };
+  for (const root of topicTree) {
+    const found = walk(root, []);
+    if (found) return found;
+  }
+  return [];
+}
+
+/** Leaf slugs in the order the tree presents them. */
+export function flattenLeaves(nodes: TopicNode[]): string[] {
+  return nodes.flatMap((node) => [
+    ...(node.leaves ?? []),
+    ...flattenLeaves(node.children ?? []),
+  ]);
+}
+
+/** The top-level topic containing the slug and its leaf order — the
+ *  prev/next browse scope (no cross-topic bleed). */
+export function topicScopeForSlug(
+  slug: string,
+): { topic: TopicNode; order: string[] } | undefined {
+  const topic = pathForSlug(slug)[0];
+  if (!topic) return undefined;
+  return { topic, order: flattenLeaves([topic]) };
+}
+
+/** Deepest tree group holding the slug (the subtopic when one exists) —
+ *  the scope for "more …" related links. */
+export function siblingGroupForSlug(
+  slug: string,
+): { name: string; slugs: string[] } | undefined {
+  const path = pathForSlug(slug);
+  const group = path[path.length - 1];
+  if (!group) return undefined;
+  return {
+    name: group.name,
+    slugs: (group.leaves ?? []).filter((s) => s !== slug),
+  };
+}

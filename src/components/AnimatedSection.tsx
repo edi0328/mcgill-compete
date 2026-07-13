@@ -22,7 +22,11 @@ import {
  * paints see everything). On mount, blocks below the fold get
  * data-reveal="pending" (hidden via CSS gated on prefers-reduced-motion),
  * and one shared IntersectionObserver flips them to "in" as they approach
- * the viewport. Everything reveals from y:16px — no direction variants.
+ * the viewport. Everything reveals from y:8px — no direction variants.
+ *
+ * Reveals are deliberately fast (400ms) so they never gate reading; primary
+ * body text (e.g. home About paragraphs) is never wrapped in a reveal at
+ * all (NN/g, July 2026 decision).
  */
 
 const STAGGER_MS = 70;

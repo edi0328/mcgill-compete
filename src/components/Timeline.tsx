@@ -16,7 +16,7 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
             <span className="font-mono text-sm text-accent">{item.year}</span>
             <VerifyBadge verified={item.verified} />
           </div>
-          <p className="mt-1.5 text-sm text-fg-muted">{item.text}</p>
+          <p className="mt-2 text-sm text-fg-muted">{item.text}</p>
         </StaggerItem>
       ))}
     </StaggerGrid>

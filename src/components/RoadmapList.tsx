@@ -14,7 +14,7 @@ export function RoadmapList({ steps }: { steps: RoadmapStep[] }) {
         <StaggerItem key={step.title}>
           <div className="flex gap-5">
             <div className="flex flex-col items-center">
-              <span className="pt-0.5 font-mono text-sm text-accent">
+              <span className="pt-1 font-mono text-sm text-accent">
                 {String(i + 1).padStart(2, "0")}
               </span>
               {i < steps.length - 1 && (
@@ -29,7 +29,7 @@ export function RoadmapList({ steps }: { steps: RoadmapStep[] }) {
               {step.link && isReal(step.link.url) && (
                 <a
                   href={step.link.url}
-                  className="mt-1.5 inline-block font-mono text-[12px] text-cf-blue hover:underline"
+                  className="mt-2 inline-block font-mono text-[12px] text-cf-blue hover:underline"
                 >
                   [{step.link.label}]
                 </a>

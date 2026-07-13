@@ -41,7 +41,7 @@ export function TeamMemberCard({ member }: { member: TeamMember }) {
       </div>
 
       {(member.programYear || member.bio) && (
-        <div className="mt-4 space-y-1.5">
+        <div className="mt-4 space-y-2">
           {member.programYear && (
             <p className="font-mono text-[12px] text-fg-faint">{member.programYear}</p>
           )}

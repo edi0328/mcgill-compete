@@ -50,7 +50,6 @@ const moreActivities = [
 
 export default function Home() {
   const nextEvents = upcomingEvents(3);
-  const partnerNumber = nextEvents.length > 0 ? "04" : "03";
 
   return (
     <>
@@ -68,11 +67,22 @@ export default function Home() {
             <p className="mt-5 max-w-[52ch] text-[15px] leading-relaxed text-fg-muted sm:text-base">
               {site.shortDescription}
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <LinkButton href={site.links.discord} variant="primary" external>
+            {/* Below sm the pair doesn't fit on one line — full-width stack
+                instead of a ragged wrap. */}
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <LinkButton
+                href={site.links.discord}
+                variant="primary"
+                external
+                className="w-full sm:w-auto"
+              >
                 <DiscordIcon width={15} height={15} /> join the discord
               </LinkButton>
-              <LinkButton href="/schedule" variant="ghost">
+              <LinkButton
+                href="/schedule"
+                variant="ghost"
+                className="w-full sm:w-auto"
+              >
                 see this fall&apos;s schedule
               </LinkButton>
             </div>
@@ -86,18 +96,17 @@ export default function Home() {
       </div>
 
       {/* ── Who we are ───────────────────────────────────────── */}
-      <Section number="01" label="who we are" title="About the club">
-        <AnimatedSection>
-          <div className="max-w-[65ch] space-y-4 border-l-2 border-accent pl-6 text-[16px] leading-relaxed text-fg-muted sm:text-[17px]">
-            {site.about.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-            ))}
-          </div>
-        </AnimatedSection>
+      <Section title="About the club">
+        {/* Primary reading text renders instantly — never behind a reveal. */}
+        <div className="max-w-[65ch] space-y-4 border-l-2 border-accent pl-6 text-[16px] leading-relaxed text-fg-muted sm:text-[17px]">
+          {site.about.map((paragraph) => (
+            <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+          ))}
+        </div>
       </Section>
 
       {/* ── Activities ───────────────────────────────────────── */}
-      <Section number="02" label="what we do" title="Main activities" tone="surface">
+      <Section title="What we do" scramble tone="surface">
         <StaggerGrid className="grid gap-4 sm:grid-cols-2">
           {coreActivities.map((a) => (
             <StaggerItem key={a.title}>
@@ -114,7 +123,7 @@ export default function Home() {
         <StaggerGrid className="mt-8 grid gap-x-10 sm:grid-cols-2">
           {moreActivities.map((a) => (
             <StaggerItem key={a.title}>
-              <div className="border-t border-line py-3.5">
+              <div className="border-t border-line py-4">
                 <h3 className="text-[15px] font-medium">{a.title}</h3>
                 <p className="mt-1 text-sm text-fg-muted">{a.text}</p>
               </div>
@@ -125,7 +134,7 @@ export default function Home() {
 
       {/* ── Next events ──────────────────────────────────────── */}
       {nextEvents.length > 0 && (
-        <Section number="03" label="coming soon" title="This fall">
+        <Section title="This fall">
           <StaggerGrid className="max-w-3xl divide-y divide-line border-y border-line">
             {nextEvents.map((event) => (
               <StaggerItem key={event.title}>
@@ -141,8 +150,6 @@ export default function Home() {
 
       {/* ── Partners ──────────────────────────────────────────── */}
       <Section
-        number={partnerNumber}
-        label="partners"
         title="Partner with us"
         intro="Our contests and training sessions reach McGill's strongest algorithmic problem-solvers. Email us about sponsorship."
         tone="surface"

@@ -40,7 +40,7 @@ html[data-theme="dark"] {
   --accent-soft: light-dark(#a8121f, #ff6d70);
 
   /* Motion tokens — the only curves/durations the site uses.
-     Reveals: 550ms expo-out. Micro-interactions: 200ms ease-out.
+     Reveals: 400ms expo-out from y:8px. Micro-interactions: 200ms ease-out.
      Hovers: 150ms ease (Tailwind duration-150). */
   --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
   --ac: light-dark(#178a4c, #2fbf71);
@@ -162,6 +162,12 @@ h3 {
   color: var(--fg-faint);
 }
 
+/* Keyboard focus ring: one global rule, accent to match the site. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 /*
  * Scroll reveals (AnimatedSection.tsx). Server HTML ships fully visible;
  * the client marks below-fold blocks "pending" and an IntersectionObserver
@@ -171,20 +177,81 @@ h3 {
 @media (prefers-reduced-motion: no-preference) {
   [data-reveal="pending"] {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(8px);
   }
   [data-reveal="in"] {
     opacity: 1;
     transform: none;
     transition:
-      opacity 0.55s var(--ease-reveal) var(--reveal-delay, 0ms),
-      transform 0.55s var(--ease-reveal) var(--reveal-delay, 0ms);
+      opacity 0.4s var(--ease-reveal) var(--reveal-delay, 0ms),
+      transform 0.4s var(--ease-reveal) var(--reveal-delay, 0ms);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+/*
+ * Page transitions (View Transitions API, progressive enhancement).
+ * Route navigations swap a "page-shell" boundary (<ViewTransition> in the
+ * root and templates layouts). The old page releases instantly and the
+ * incoming page settles in with the site's reveal move — fade + small rise,
+ * quicker than scroll reveals (250ms vs 400ms). Group geometry animation is
+ * disabled: old/new page rects differ by the scroll delta, and the default
+ * morph would produce a giant slide when navigating from deep in a page.
+ * Unsupported browsers keep instant navigation.
+ */
+::view-transition-group(.page-shell) {
+  animation: none;
+}
+::view-transition-old(.page-shell) {
+  display: none;
+}
+::view-transition-new(.page-shell) {
+  animation: vt-page-enter 250ms var(--ease-reveal) both;
+}
+@keyframes vt-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* Header/footer/paper background live in the root group; keep its crossfade
+   in step with the content settle. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 250ms;
+}
+
+/* Sticky header stays anchored during transitions: no snapshot animation,
+   always the live new state (so the ScrollProgress bar springs back to 0
+   instead of freezing a stale full-width snapshot), above settling content. */
+.site-header {
+  view-transition-name: site-header;
+}
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 60;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+/* Reduced motion: route navigations swap instantly. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }
 
