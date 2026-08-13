@@ -12,7 +12,7 @@ export function RoadmapList({ steps }: { steps: RoadmapStep[] }) {
     <StaggerGrid className="max-w-2xl">
       {steps.map((step, i) => (
         <StaggerItem key={step.title}>
-          <div className="flex gap-5">
+          <div className="flex gap-4">
             <div className="flex flex-col items-center">
               <span className="pt-1 font-mono text-base text-accent">
                 {String(i + 1).padStart(2, "0")}

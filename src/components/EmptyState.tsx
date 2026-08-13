@@ -22,7 +22,7 @@ export function EmptyState({
   external?: boolean;
 }) {
   return (
-    <div className="max-w-3xl rounded-lg border border-dashed border-line bg-surface p-6">
+    <div className="max-w-3xl rounded-lg border border-dashed border-line bg-surface p-5">
       <p className="kicker">{`// ${title}`}</p>
       <p className="mt-2 max-w-[60ch] text-base leading-relaxed text-fg-muted">
         {children}

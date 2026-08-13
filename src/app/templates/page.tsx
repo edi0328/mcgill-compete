@@ -47,7 +47,7 @@ function TopicGroup({ node }: { node: TopicNode }) {
         </div>
       )}
       {node.children?.map((child) => (
-        <div key={child.name} className="mt-5">
+        <div key={child.name} className="mt-6">
           <p className="font-mono text-[12px] text-fg-faint">
             {child.name.toLowerCase()}
           </p>

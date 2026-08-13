@@ -101,7 +101,7 @@ export default async function TemplatePage({
 
       <AnimatedSection delay={0.1} className="mt-8">
         <p className="kicker">{"// use it on"}</p>
-        <div className="panel mt-2 px-5 py-4">
+        <div className="panel mt-2 p-5">
           <a
             href={template.exampleProblem.url}
             target="_blank"

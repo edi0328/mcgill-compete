@@ -85,7 +85,7 @@ export function EventCard({
     .join(" · ");
 
   return (
-    <article className="grid gap-x-6 gap-y-2 py-5 sm:grid-cols-[11ch_1fr]">
+    <article className="grid gap-x-6 gap-y-2 py-6 sm:grid-cols-[11ch_1fr]">
       <div className="font-mono leading-relaxed">
         <span className="block text-[12px] font-semibold text-fg">{when1}</span>
         {when2 && (

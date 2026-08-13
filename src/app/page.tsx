@@ -46,7 +46,7 @@ export default function Home() {
               immediate
               className="-ml-1 font-display text-4xl tracking-tight sm:text-6xl lg:whitespace-nowrap"
             />
-            <p className="mt-5 max-w-[52ch] text-base leading-relaxed text-fg-muted">
+            <p className="mt-6 max-w-[52ch] text-base leading-relaxed text-fg-muted">
               {site.heroDescription}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
