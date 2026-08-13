@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import {
   AnimatedSection,
   Parallax,
@@ -112,7 +113,7 @@ export default function Home() {
       >
         <AnimatedSection>
           <LinkButton href="/sponsorship" variant="primary">
-            become a sponsor
+            become a sponsor <ArrowRight size={15} />
           </LinkButton>
         </AnimatedSection>
       </Section>
