@@ -155,7 +155,7 @@ def area2(poly):
     exampleProblem: {
       name: "CSES: Minimum Euclidean Distance",
       url: "https://cses.fi/problemset/task/2194",
-      note: "Asks for the squared distance, which is exactly what the template returns — no floating point anywhere. 2·10^5 points, so the O(n²) all-pairs scan is out.",
+      note: "Asks for the squared distance, which is exactly what the template returns, with no floating point anywhere. 2·10^5 points, so the O(n²) all-pairs scan is out.",
     },
     code: {
       cpp: `typedef long long ll;

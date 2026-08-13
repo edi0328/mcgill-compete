@@ -111,7 +111,7 @@ export function templateBySlug(slug: string): AlgoTemplate | undefined {
 }
 
 /*
- * Navigation helpers. The tree is the single source of truth for hierarchy —
+ * Navigation helpers. The tree is the single source of truth for hierarchy -
  * `template.topic` is a loose display field that mixes levels (and doesn't
  * always match tree node names), so breadcrumbs, related links, and
  * prev/next must all derive from `topicTree` via these helpers.
@@ -166,7 +166,7 @@ export function flattenLeaves(nodes: TopicNode[]): string[] {
   ]);
 }
 
-/** The top-level topic containing the slug and its leaf order — the
+/** The top-level topic containing the slug and its leaf order - the
  *  prev/next browse scope (no cross-topic bleed). */
 export function topicScopeForSlug(
   slug: string,
@@ -176,7 +176,7 @@ export function topicScopeForSlug(
   return { topic, order: flattenLeaves([topic]) };
 }
 
-/** Deepest tree group holding the slug (the subtopic when one exists) —
+/** Deepest tree group holding the slug (the subtopic when one exists) -
  *  the scope for "more …" related links. */
 export function siblingGroupForSlug(
   slug: string,

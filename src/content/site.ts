@@ -2,7 +2,7 @@
  * Site-wide settings and links.
  *
  * Future execs: replace every [PLACEHOLDER] value with the real one.
- * This is the single source of truth for contact links — the header,
+ * This is the single source of truth for contact links - the header,
  * footer, and pages all read from here.
  */
 
@@ -10,10 +10,12 @@ export const site = {
   name: "Compete McGill",
   shortDescription:
     "McGill University's competitive programming club. We train for ICPC, run practice contests, and help students get better at solving hard problems fast.",
+  heroDescription:
+    "McGill University's competitive programming club. We train for ICPC, run practice contests, and help students get better at solving hard problems fast.",
 
   /** Paragraphs for the "who we are" panel on the home page. */
   about: [
-    "Compete McGill is McGill University's competitive programming club. Members range from first-years writing their first loops to ICPC regional competitors, and everyone trains and competes together.",
+    "Founded in 2018, Compete McGill helps students discover competitive programming and develop their problem-solving skills. Members range from first-years writing their first loops to ICPC regional competitors, and everyone trains and competes together.",
     "Every semester we run beginner and advanced training tracks, host practice contests under real ICPC rules, and prepare McGill's teams for the ICPC.",
   ],
 
@@ -34,8 +36,8 @@ export const site = {
    */
   calendarEmbedUrl: "[GOOGLE_CALENDAR_EMBED_URL]",
 
-  /** Shown in the "Partner with us" strip. No sponsor names until confirmed. */
-  sponsorshipEmail: "[SPONSORSHIP_EMAIL]",
+  /** Shown in the "Partner with us" strip and on /sponsorship. */
+  sponsorshipEmail: "compete.mcgill@gmail.com",
 };
 
 /** The weekly rhythm table on the Schedule page. */

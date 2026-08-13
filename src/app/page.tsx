@@ -1,74 +1,54 @@
-import { Mail } from "lucide-react";
 import {
   AnimatedSection,
   Parallax,
   StaggerGrid,
   StaggerItem,
 } from "@/components/AnimatedSection";
-import { ArrowLink } from "@/components/ArrowLink";
-import { EventCard } from "@/components/EventCard";
+import { FallEventsList } from "@/components/FallEventsList";
 import { LinkButton } from "@/components/LinkButton";
 import { GemCanvas } from "@/components/HeroVisuals";
 import { ScrambleText } from "@/components/ScrambleText";
 import { DiscordIcon } from "@/components/BrandIcons";
 import { Section } from "@/components/Section";
 import { site } from "@/content/site";
-import { upcomingEvents } from "@/lib/events";
 
-/** The two activities that define the club, always fully visible. */
-const coreActivities = [
+/** The club's public-facing program, distilled from the full event plan. */
+const activities = [
   {
-    title: "Training sessions",
-    meta: "weekly · beginner + advanced",
-    text: "Weekly beginner and advanced sessions on core algorithms and techniques.",
+    title: "Training",
+    text: "Separate beginner and advanced tracks for every skill level.",
   },
   {
-    title: "Practice contests",
-    meta: "every 2–3 weeks · icpc rules",
-    text: "Timed contests under ICPC rules, the closest thing to the real event.",
-  },
-];
-
-const moreActivities = [
-  {
-    title: "ICPC preparation",
-    text: "Team selection, 5-hour simulations, and travel to regionals.",
+    title: "Competitions",
+    text: "Warmups, NP-Compete, ICPC qualifiers, and IEEEXtreme.",
   },
   {
-    title: "Contest reviews",
-    text: "Full solution walkthroughs after every contest, easiest to hardest.",
+    title: "Preparation",
+    text: "Mock interviews, team simulations, and post-contest reviews.",
   },
   {
-    title: "Beginner onboarding",
-    text: "Structured path from your first problem to your first rated contest.",
-  },
-  {
-    title: "Team formation",
-    text: "We match you with teammates at your level for ICPC and practice.",
+    title: "Community",
+    text: "Hackathons, club collaborations, and student-created problems.",
   },
 ];
 
 export default function Home() {
-  const nextEvents = upcomingEvents(3);
-
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────── */}
       <div className="relative overflow-hidden border-b border-line">
         <div className="bg-grid absolute inset-0" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-5xl items-center gap-6 px-4 py-16 sm:px-6 sm:py-20 lg:min-h-[550px] lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="relative mx-auto grid max-w-5xl items-center gap-6 px-4 py-16 sm:px-6 sm:py-20 lg:min-h-[550px] lg:grid-cols-[1.15fr_0.85fr]">
           <AnimatedSection>
             <ScrambleText
               as="h1"
               text="Compete McGill"
               immediate
-              className="font-display text-4xl tracking-tight sm:text-6xl"
+              className="-ml-1 font-display text-4xl tracking-tight sm:text-6xl lg:whitespace-nowrap"
             />
-            <p className="mt-5 max-w-[52ch] text-[15px] leading-relaxed text-fg-muted sm:text-base">
-              {site.shortDescription}
+            <p className="mt-5 max-w-[52ch] text-base leading-relaxed text-fg-muted">
+              {site.heroDescription}
             </p>
-            {/* Below sm the pair doesn't fit on one line — full-width stack
-                instead of a ragged wrap. */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <LinkButton
                 href={site.links.discord}
@@ -77,13 +57,6 @@ export default function Home() {
                 className="w-full sm:w-auto"
               >
                 <DiscordIcon width={15} height={15} /> join the discord
-              </LinkButton>
-              <LinkButton
-                href="/schedule"
-                variant="ghost"
-                className="w-full sm:w-auto"
-              >
-                see this fall&apos;s schedule
               </LinkButton>
             </div>
           </AnimatedSection>
@@ -97,8 +70,8 @@ export default function Home() {
 
       {/* ── Who we are ───────────────────────────────────────── */}
       <Section title="About the club">
-        {/* Primary reading text renders instantly — never behind a reveal. */}
-        <div className="max-w-[65ch] space-y-4 border-l-2 border-accent pl-6 text-[16px] leading-relaxed text-fg-muted sm:text-[17px]">
+        {/* Primary reading text renders instantly - never behind a reveal. */}
+        <div className="max-w-[65ch] space-y-4 border-l-2 border-accent pl-6 text-base leading-relaxed text-fg-muted">
           {site.about.map((paragraph) => (
             <p key={paragraph.slice(0, 32)}>{paragraph}</p>
           ))}
@@ -107,61 +80,39 @@ export default function Home() {
 
       {/* ── Activities ───────────────────────────────────────── */}
       <Section title="What we do" scramble tone="surface">
-        <StaggerGrid className="grid gap-4 sm:grid-cols-2">
-          {coreActivities.map((a) => (
+        {/* Four concise full-width layers. Every layout interval follows the
+            section's 4px spacing grid. */}
+        <StaggerGrid className="divide-y divide-line border-y border-line">
+          {activities.map((a) => (
             <StaggerItem key={a.title}>
-              <div className="panel h-full p-6">
-                <p className="kicker">{a.meta}</p>
-                <h3 className="mt-2 text-lg font-semibold">{a.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">
+              <div className="py-6 sm:grid sm:grid-cols-[14rem_1fr] sm:items-baseline sm:gap-x-4">
+                <h3 className="text-base font-semibold tracking-tight text-fg">
+                  {a.title}
+                </h3>
+                <p className="mt-2 text-base leading-relaxed text-fg-muted sm:mt-0">
                   {a.text}
                 </p>
               </div>
             </StaggerItem>
           ))}
         </StaggerGrid>
-        <StaggerGrid className="mt-8 grid gap-x-10 sm:grid-cols-2">
-          {moreActivities.map((a) => (
-            <StaggerItem key={a.title}>
-              <div className="border-t border-line py-4">
-                <h3 className="text-[15px] font-medium">{a.title}</h3>
-                <p className="mt-1 text-sm text-fg-muted">{a.text}</p>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerGrid>
       </Section>
 
-      {/* ── Next events ──────────────────────────────────────── */}
-      {nextEvents.length > 0 && (
-        <Section title="This fall">
-          <StaggerGrid className="max-w-3xl divide-y divide-line border-y border-line">
-            {nextEvents.map((event) => (
-              <StaggerItem key={event.title}>
-                <EventCard event={event} />
-              </StaggerItem>
-            ))}
-          </StaggerGrid>
-          <AnimatedSection className="mt-6">
-            <ArrowLink href="/schedule">full schedule</ArrowLink>
-          </AnimatedSection>
-        </Section>
-      )}
+      {/* ── This fall ────────────────────────────────────────── */}
+      <Section title="This fall">
+        <FallEventsList />
+      </Section>
 
       {/* ── Partners ──────────────────────────────────────────── */}
       <Section
         title="Partner with us"
-        intro="Our contests and training sessions reach McGill's strongest algorithmic problem-solvers. Email us about sponsorship."
+        intro="Our contests and training sessions reach McGill's strongest algorithmic problem-solvers. Tiers, single-event options, and the full prospectus are on the sponsorship page."
         tone="surface"
         flush
       >
         <AnimatedSection>
-          <LinkButton
-            href={`mailto:${site.sponsorshipEmail}`}
-            variant="primary"
-            external
-          >
-            <Mail size={15} /> sponsorship inquiries
+          <LinkButton href="/sponsorship" variant="primary">
+            become a sponsor
           </LinkButton>
         </AnimatedSection>
       </Section>

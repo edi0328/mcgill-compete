@@ -10,7 +10,7 @@ import * as THREE from "three";
  * throw it. Loaded client-side only (see HeroVisuals.tsx); fades in on its
  * first WebGL frame so nothing else ever paints in its place. Rendering
  * pauses while offscreen or when the tab is hidden.
- * Decorative — hidden from screen readers.
+ * Decorative - hidden from screen readers.
  */
 
 const RED = "#e51c31";
@@ -65,7 +65,7 @@ function Gem() {
   useFrame(() => {
     if (!group.current) return;
 
-    // scroll turns the gem — user-driven, so allowed even under reduced motion
+    // scroll turns the gem - user-driven, so allowed even under reduced motion
     const scrollY = window.scrollY;
     if (lastScrollY.current === null) lastScrollY.current = scrollY;
     const scrollDelta = scrollY - lastScrollY.current;
@@ -98,7 +98,7 @@ function Gem() {
       onPointerUp={() => (dragging.current = false)}
       onPointerLeave={() => (dragging.current = false)}
     >
-      {/* prism body — material slots: [side, top cap, bottom cap] */}
+      {/* prism body - material slots: [side, top cap, bottom cap] */}
       <mesh>
         <cylinderGeometry args={[1, 1, 1.15, 6, 1]} />
         <meshLambertMaterial attach="material-0" map={sideTexture} flatShading />

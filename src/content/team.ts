@@ -2,7 +2,7 @@ import type { ContactChannel, TeamMember } from "@/types/content";
 
 /**
  * Executive team. Members are shown sorted by `order` (ascending).
- * All entries are placeholders — replace with real execs (with their consent
+ * All entries are placeholders - replace with real execs (with their consent
  * for any photo/bio/links you publish).
  */
 export const teamMembers: TeamMember[] = [

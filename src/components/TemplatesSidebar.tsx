@@ -11,10 +11,10 @@ import type { NavGroup, NavLeaf } from "@/content/templates";
  * (MkDocs-Material behavior): the 7 topic headers are always visible, the
  * topic containing the current page is always expanded, others expand on
  * click. Typing in the filter searches all templates regardless of collapse
- * state. One client component holding one filter/disclosure state — the
+ * state. One client component holding one filter/disclosure state - the
  * templates layout stays mounted across navigations, so it all survives
  * moving between templates. On mobile the whole panel collapses behind a
- * toggle. Receives only names + slugs (NavGroup) — template code never
+ * toggle. Receives only names + slugs (NavGroup) - template code never
  * ships to the client.
  */
 
@@ -30,7 +30,7 @@ export function TemplatesSidebar({
   const [open, setOpen] = useState(false);
   const [openTopics, setOpenTopics] = useState<ReadonlySet<string>>(new Set());
 
-  // Close the mobile drawer on navigation — render-time, same idiom as
+  // Close the mobile drawer on navigation - render-time, same idiom as
   // SiteHeader, so the old state never paints on the new page.
   const [prevPath, setPrevPath] = useState(pathname);
   if (prevPath !== pathname) {
@@ -81,7 +81,7 @@ export function TemplatesSidebar({
               aria-current={active ? "page" : undefined}
               className={`block border-l py-1 pl-3 text-[13px] transition-colors ${
                 active
-                  ? "border-accent font-medium text-fg"
+                  ? "border-accent font-semibold text-fg"
                   : "border-line text-fg-muted hover:border-fg-faint hover:text-fg"
               }`}
             >
@@ -118,7 +118,7 @@ export function TemplatesSidebar({
       .filter((child): child is ReactNode => child !== null);
     if (q !== "" && leaves.length === 0 && subs.length === 0) return null;
 
-    // The active topic never collapses — you can't lose your place.
+    // The active topic never collapses - you can't lose your place.
     const expanded =
       q !== "" || containsActive(topic) || openTopics.has(topic.name);
 

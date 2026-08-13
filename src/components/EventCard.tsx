@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import { Laptop, MessagesSquare, Trophy, Users } from "lucide-react";
 import { LevelTag } from "@/components/Badge";
-import { BipartiteIcon } from "@/components/EventIcons";
+import { BinaryTreeIcon } from "@/components/EventIcons";
 import { InlineLinks } from "@/components/InlineLinks";
 import { eventDateParts } from "@/lib/events";
 import { isReal } from "@/lib/placeholders";
@@ -22,23 +22,24 @@ type EventIcon = ComponentType<{
   className?: string;
 }>;
 
-/** One glyph per event family, inline next to the title — no tile, no box. */
+/** One glyph per event family, inline next to the title - no tile, no box. */
 const typeIcons: Record<EventType, EventIcon> = {
-  "Beginner training": BipartiteIcon,
-  "Advanced training": BipartiteIcon,
-  "ICPC team practice": BipartiteIcon,
+  "Beginner training": BinaryTreeIcon,
+  "Advanced training": BinaryTreeIcon,
+  "ICPC team practice": BinaryTreeIcon,
   "Practice contest": Laptop,
   "Club contest": Laptop,
   "External contest": Laptop,
   "ICPC qualifier": Trophy,
   "Contest review": MessagesSquare,
   "Social / kickoff": Users,
+  "Mock interviews": MessagesSquare,
 };
 
 /**
  * The left timetable slot: two stacked mono lines. Confirmed dates render
  * "thu apr 2" over "18:00–19:30"; unconfirmed ones render the `timing`
- * string split at "·" ("sept" over "date tba") — TBA is data, not apology.
+ * string split at "·" ("sept" over "date tba") - TBA is data, not apology.
  */
 function whenLines(event: ClubEvent): [string, string?] {
   if (event.date) {
@@ -57,10 +58,20 @@ function whenLines(event: ClubEvent): [string, string?] {
 /**
  * One timetable row: mono when-column on the left, then title (with an
  * inline type glyph and a bare level tag), description, and links.
- * Rows are separated by hairline rules from the parent (`divide-y`) —
+ * Rows are separated by hairline rules from the parent (`divide-y`) -
  * no cards, no borders of its own.
+ *
+ * `compact` is the home-page teaser layer: date, icon, title, and the
+ * one-line description only. The full layout (level, room/host, links) is
+ * kept for a future schedule/archive page.
  */
-export function EventCard({ event }: { event: ClubEvent }) {
+export function EventCard({
+  event,
+  compact = false,
+}: {
+  event: ClubEvent;
+  compact?: boolean;
+}) {
   const links = (Object.entries(event.links ?? {}) as [keyof EventLinks, string][]).map(
     ([key, url]) => ({ label: linkLabels[key], url }),
   );
@@ -76,25 +87,37 @@ export function EventCard({ event }: { event: ClubEvent }) {
   return (
     <article className="grid gap-x-6 gap-y-2 py-5 sm:grid-cols-[11ch_1fr]">
       <div className="font-mono leading-relaxed">
-        <span className="block text-[13px] font-medium text-fg">{when1}</span>
-        {when2 && <span className="block text-[12px] text-fg-faint">{when2}</span>}
+        <span className="block text-[13px] font-semibold text-fg">{when1}</span>
+        {when2 && (
+          <span
+            className={`block text-fg-faint ${compact ? "text-[13px]" : "text-[12px]"}`}
+          >
+            {when2}
+          </span>
+        )}
       </div>
 
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <Icon size={18} strokeWidth={1.75} className="shrink-0 text-fg-muted" />
-          <h3 className="text-[17px] font-semibold tracking-tight">
+          <h3
+            className={`${compact ? "text-base" : "text-[17px]"} font-semibold tracking-tight`}
+          >
             {event.title}
           </h3>
-          <LevelTag level={event.level} />
+          {!compact && <LevelTag level={event.level} />}
         </div>
-        <p className="mt-1 pl-7 text-sm leading-relaxed text-fg-muted">
+        <p
+          className={`mt-1 pl-7 leading-relaxed text-fg-muted ${compact ? "text-base" : "text-sm"}`}
+        >
           {event.description}
         </p>
-        {place && (
+        {!compact && place && (
           <p className="mt-2 pl-7 font-mono text-[12px] text-fg-faint">{place}</p>
         )}
-        {links.length > 0 && <InlineLinks links={links} className="mt-2 pl-7" />}
+        {!compact && links.length > 0 && (
+          <InlineLinks links={links} className="mt-2 pl-7" />
+        )}
       </div>
     </article>
   );

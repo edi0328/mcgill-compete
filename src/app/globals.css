@@ -8,7 +8,7 @@
 html {
   color-scheme: light dark;
   scroll-behavior: smooth;
-  /* Hide the native scrollbar — the red progress bar on the right edge
+  /* Hide the native scrollbar - the red progress bar on the right edge
      (ScrollProgress.tsx) plays that role. */
   scrollbar-width: none;
 }
@@ -39,7 +39,7 @@ html[data-theme="dark"] {
   --accent: light-dark(#d91f2f, #f04e57);
   --accent-soft: light-dark(#a8121f, #ff6d70);
 
-  /* Motion tokens — the only curves/durations the site uses.
+  /* Motion tokens - the only curves/durations the site uses.
      Reveals: 400ms expo-out from y:8px. Micro-interactions: 200ms ease-out.
      Hovers: 150ms ease (Tailwind duration-150). */
   --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
@@ -110,7 +110,7 @@ html[data-theme="dark"] .shiki span {
   box-shadow: 0 4px 14px light-dark(rgba(8, 8, 8, 0.05), transparent);
 }
 /* Retract to a hairline: the 1px border plus the 2px ScrollProgress bar stay
-   peeking at the viewport edge — the red line is the site's only scroll
+   peeking at the viewport edge - the red line is the site's only scroll
    indicator (native scrollbar is hidden above) and must never disappear. */
 .site-header[data-hidden] {
   transform: translateY(calc(-100% + 3px));
@@ -138,7 +138,7 @@ html[data-theme="dark"] .shiki span {
 }
 
 /* Soft-shadow content panel (about box, accordion rows).
-   No shadow on dark — the lighter surface color is the elevation. */
+   No shadow on dark - the lighter surface color is the elevation. */
 .panel {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -198,7 +198,7 @@ h3 {
  * Page transitions (View Transitions API, progressive enhancement).
  * Route navigations swap a "page-shell" boundary (<ViewTransition> in the
  * root and templates layouts). The old page releases instantly and the
- * incoming page settles in with the site's reveal move — fade + small rise,
+ * incoming page settles in with the site's reveal move - fade + small rise,
  * quicker than scroll reveals (250ms vs 400ms). Group geometry animation is
  * disabled: old/new page rects differ by the scroll delta, and the default
  * morph would produce a giant slide when navigating from deep in a page.

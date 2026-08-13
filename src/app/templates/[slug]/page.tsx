@@ -40,7 +40,7 @@ export default async function TemplatePage({
   if (!template) notFound();
 
   // All navigation derives from topicTree (template.topic is display-only):
-  // prev/next stay within the top-level topic (no cross-topic bleed — the
+  // prev/next stay within the top-level topic (no cross-topic bleed - the
   // sidebar is the cross-topic path), related links come from the deepest
   // containing group (the subtopic when one exists).
   const crumbs = pathForSlug(template.slug).map((node) => node.name);
@@ -57,7 +57,7 @@ export default async function TemplatePage({
     .map(templateBySlug)
     .filter((t): t is AlgoTemplate => t !== undefined);
 
-  // Highlighted at build time (SSG) — zero client-side JS for the colors.
+  // Highlighted at build time (SSG) - zero client-side JS for the colors.
   const shikiOptions = {
     themes: { light: "github-light" as const, dark: "github-dark" as const },
     defaultColor: "light" as const,
@@ -162,7 +162,7 @@ export default async function TemplatePage({
               className="group rounded-lg border border-line bg-surface px-4 py-3 transition-colors hover:border-fg-faint"
             >
               <span className="kicker">← previous</span>
-              <span className="mt-1 block font-medium tracking-tight transition-colors group-hover:text-accent">
+              <span className="mt-1 block font-semibold tracking-tight transition-colors group-hover:text-accent">
                 {prev.name}
               </span>
             </Link>
@@ -175,7 +175,7 @@ export default async function TemplatePage({
               className="group rounded-lg border border-line bg-surface px-4 py-3 text-right transition-colors hover:border-fg-faint"
             >
               <span className="kicker">next →</span>
-              <span className="mt-1 block font-medium tracking-tight transition-colors group-hover:text-accent">
+              <span className="mt-1 block font-semibold tracking-tight transition-colors group-hover:text-accent">
                 {next.name}
               </span>
             </Link>

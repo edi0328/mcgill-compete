@@ -2,7 +2,7 @@ import type { SVGProps } from "react";
 
 /**
  * Brand glyphs (Discord, Instagram, GitHub) inlined from Simple Icons
- * (simpleicons.org, CC0) — lucide-react no longer ships brand icons.
+ * (simpleicons.org, CC0) - lucide-react no longer ships brand icons.
  */
 
 function BrandIcon({ d, ...props }: SVGProps<SVGSVGElement> & { d: string }) {

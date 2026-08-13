@@ -7,7 +7,7 @@ export const dp: AlgoTemplate[] = [
     topic: "Dynamic Programming",
     complexity: "O(n log n)",
     description:
-      "Longest strictly increasing subsequence. tails[k] holds the smallest possible last element of an increasing subsequence of length k+1; each new element replaces the first tail that is >= it (binary search), or extends the array. The tails array is always sorted, which is what makes the binary search valid — but note it is NOT itself the subsequence. Use lower_bound for strictly increasing, upper_bound to allow ties.",
+      "Longest strictly increasing subsequence. tails[k] holds the smallest possible last element of an increasing subsequence of length k+1; each new element replaces the first tail that is >= it (binary search), or extends the array. The tails array is always sorted, which is what makes the binary search valid, but note it is NOT itself the subsequence. Use lower_bound for strictly increasing, upper_bound to allow ties.",
     exampleProblem: {
       name: "CSES: Increasing Subsequence",
       url: "https://cses.fi/problemset/task/1145",
@@ -48,11 +48,11 @@ def lis(a):
     topic: "Dynamic Programming",
     complexity: "O(n·W)",
     description:
-      "Pick a subset of items with weights and values so total weight stays within W and value is maximal. One 1-D array suffices: iterate weights DOWNWARDS so each item is used at most once — iterating upwards silently turns it into the unbounded knapsack (items reusable), which is the single most common knapsack bug. The same loop shape covers subset-sum (dp of booleans) and counting variants (dp of counts).",
+      "Pick a subset of items with weights and values so total weight stays within W and value is maximal. One 1-D array suffices: iterate weights DOWNWARDS so each item is used at most once; iterating upwards silently turns it into the unbounded knapsack (items reusable), which is the single most common knapsack bug. The same loop shape covers subset-sum (dp of booleans) and counting variants (dp of counts).",
     exampleProblem: {
       name: "CSES: Book Shop",
       url: "https://cses.fi/problemset/task/1158",
-      note: "Prices are weights, pages are values, x is the capacity. Straight 0/1 knapsack — if you get double the expected pages, you iterated upwards.",
+      note: "Prices are weights, pages are values, x is the capacity. Straight 0/1 knapsack: if you get double the expected pages, you iterated upwards.",
     },
     code: {
       cpp: `// weights w[i], values v[i], capacity W
@@ -80,11 +80,11 @@ long long knapsack(vector<int>& w, vector<int>& v, int W) {
     topic: "Dynamic Programming",
     complexity: "O(2^n), submasks O(3^n) total",
     description:
-      "The bit tricks every mask problem is built on: iterate all 2^n subsets of n items, test/set/clear single bits, and — the one people forget — enumerate all submasks of a given mask in O(3^n) total over all masks with the s = (s-1) & m loop. For n up to ~20, brute force over subsets is often the intended solution, not a fallback.",
+      "The bit tricks every mask problem is built on: iterate all 2^n subsets of n items, test/set/clear single bits, and, the one people forget, enumerate all submasks of a given mask in O(3^n) total over all masks with the s = (s-1) & m loop. For n up to ~20, brute force over subsets is often the intended solution, not a fallback.",
     exampleProblem: {
       name: "CSES: Apple Division",
       url: "https://cses.fi/problemset/task/1623",
-      note: "n <= 20 apples split into two groups: try every subset as group one and take the best difference. 2^20 subsets is about a million — comfortably fast.",
+      note: "n <= 20 apples split into two groups: try every subset as group one and take the best difference. 2^20 subsets is about a million, comfortably fast.",
     },
     code: {
       cpp: `// all subsets of n items
@@ -126,7 +126,7 @@ with_i, without_i = mask | (1 << i), mask & ~(1 << i)`,
     topic: "Dynamic Programming",
     complexity: "O(2^n · n²)",
     description:
-      "DP over subsets: dp[mask][v] = number of ways (or best cost) to visit exactly the vertices in mask and stand at v. Transitions extend the path by one unvisited vertex. This is the TSP pattern — it works whenever 'which elements are used' matters but their order can be compressed away. n tops out around 20 (2^20 masks); if n is 40, that is a meet-in-the-middle hint instead.",
+      "DP over subsets: dp[mask][v] = number of ways (or best cost) to visit exactly the vertices in mask and stand at v. Transitions extend the path by one unvisited vertex. This is the TSP pattern; it works whenever 'which elements are used' matters but their order can be compressed away. n tops out around 20 (2^20 masks); if n is 40, that is a meet-in-the-middle hint instead.",
     exampleProblem: {
       name: "CSES: Hamiltonian Flights",
       url: "https://cses.fi/problemset/task/1690",
@@ -177,11 +177,11 @@ def count_paths(n, adj):  # count Hamiltonian paths 0 -> n-1
     topic: "Dynamic Programming",
     complexity: "O(2^n · n)",
     description:
-      "For every mask, accumulate f over all of its submasks — in O(2^n·n) instead of the naive O(3^n) or O(4^n). One bit position per round: after round i, dp[m] has summed everything reachable by clearing bits among the first i. Flip the direction of the inner update to get sum over supermasks. This is the tool behind 'count pairs with x & y == 0' style problems.",
+      "For every mask, accumulate f over all of its submasks, in O(2^n·n) instead of the naive O(3^n) or O(4^n). One bit position per round: after round i, dp[m] has summed everything reachable by clearing bits among the first i. Flip the direction of the inner update to get sum over supermasks. This is the tool behind 'count pairs with x & y == 0' style problems.",
     exampleProblem: {
       name: "Codeforces 165E: Compatible Numbers",
       url: "https://codeforces.com/problemset/problem/165/E",
-      note: "For each a[i], find any a[j] with a[i] & a[j] == 0: store each value at its own mask, run SOS over the complement, and each query is a lookup. Max over submasks instead of sum — the recurrence is identical.",
+      note: "For each a[i], find any a[j] with a[i] & a[j] == 0: store each value at its own mask, run SOS over the complement, and each query is a lookup. Max over submasks instead of sum; the recurrence is identical.",
     },
     code: {
       cpp: `// dp[m] starts as f[m]; ends as sum of f over all submasks of m
@@ -211,7 +211,7 @@ vector<long long> sos(vector<long long> dp, int n) {  // 2^n entries
     topic: "Dynamic Programming",
     complexity: "O(digits · states · 10)",
     description:
-      "Count numbers in [0, N] with some digit property by building N digit by digit. The two universal state flags: tight (are we still glued to N's prefix, so the next digit is capped?) and started (have we placed a nonzero digit yet, so leading zeros don't pollute the property?). Answer queries on [a, b] as solve(b) - solve(a-1). The property itself rides along as extra state — here, the previous digit.",
+      "Count numbers in [0, N] with some digit property by building N digit by digit. The two universal state flags: tight (are we still glued to N's prefix, so the next digit is capped?) and started (have we placed a nonzero digit yet, so leading zeros don't pollute the property?). Answer queries on [a, b] as solve(b) - solve(a-1). The property itself rides along as extra state; here it is the previous digit.",
     exampleProblem: {
       name: "CSES: Counting Numbers",
       url: "https://cses.fi/problemset/task/2220",
@@ -275,7 +275,7 @@ def solve(n):  # count x in [0, n] with no two equal adjacent digits
     topic: "Dynamic Programming",
     complexity: "O(log C) per line / query",
     description:
-      "Maintain a set of lines y = kx + m and answer 'minimum y at x' queries — the convex hull trick without any monotonicity requirements on slopes or queries. Each tree node keeps the line that wins at its segment's midpoint; inserting recurses into the half where the loser might still win. This is what turns dp[i] = min over j of (dp[j] + k[j]·x[i] + m[j]) from O(n²) into O(n log C).",
+      "Maintain a set of lines y = kx + m and answer 'minimum y at x' queries: the convex hull trick without any monotonicity requirements on slopes or queries. Each tree node keeps the line that wins at its segment's midpoint; inserting recurses into the half where the loser might still win. This is what turns dp[i] = min over j of (dp[j] + k[j]·x[i] + m[j]) from O(n²) into O(n log C).",
     exampleProblem: {
       name: "Codeforces 319C: Kalila and Dimna in the Logging Industry",
       url: "https://codeforces.com/problemset/problem/319/C",

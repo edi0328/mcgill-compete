@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { site } from "@/content/site";
 import "./globals.css";
 
-// Downloaded at build time and self-hosted — no runtime font CDN requests.
+// Downloaded at build time and self-hosted - no runtime font CDN requests.
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-// Departure Mono (OFL, see src/app/fonts/DepartureMono-LICENSE) — the pixel
+// Departure Mono (OFL, see src/app/fonts/DepartureMono-LICENSE) - the pixel
 // display font used for headings and the wordmark.
 const departureMono = localFont({
   src: "./fonts/DepartureMono-Regular.woff2",
@@ -59,8 +59,8 @@ export default function RootLayout({
         <MotionProvider>
           <SiteHeader />
           {/* Cross-section navigations (TransitionLink) settle the whole
-              page in via "page-shell" (globals.css). Untyped transitions —
-              initial load, lazy reveals like the hero gem — resolve to
+              page in via "page-shell" (globals.css). Untyped transitions -
+              initial load, lazy reveals like the hero gem - resolve to
               "none" and play nothing. Renders no DOM node; SSR unchanged. */}
           <ViewTransition default={{ navigate: "page-shell", default: "none" }}>
             <main className="flex-1">{children}</main>

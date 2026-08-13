@@ -672,7 +672,7 @@ class TwoSat:
     topic: "Graph Algorithms",
     complexity: "O(n + m)",
     description:
-      "Walk that uses every EDGE exactly once (contrast Hamiltonian: every vertex, which is NP-hard). A circuit exists in an undirected graph iff every vertex has even degree and all edges sit in one component; a path allows exactly two odd-degree vertices (start and end). Hierholzer builds it in linear time — the per-vertex ptr is what keeps it linear, never rescanning used edges. Both impossibility conditions surface as the two failure returns.",
+      "Walk that uses every EDGE exactly once (contrast Hamiltonian: every vertex, which is NP-hard). A circuit exists in an undirected graph iff every vertex has even degree and all edges sit in one component; a path allows exactly two odd-degree vertices (start and end). Hierholzer builds it in linear time; the per-vertex ptr is what keeps it linear, never rescanning used edges. Both impossibility conditions surface as the two failure returns.",
     exampleProblem: {
       name: "CSES: Mail Delivery",
       url: "https://cses.fi/problemset/task/1691",

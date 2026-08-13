@@ -30,7 +30,7 @@ function getSnapshot(): Theme {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
-// Unknowable during SSR — render a neutral placeholder until hydrated.
+// Unknowable during SSR - render a neutral placeholder until hydrated.
 function getServerSnapshot(): Theme {
   return null;
 }

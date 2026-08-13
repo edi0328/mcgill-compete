@@ -16,8 +16,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 const nav = [
   { href: "/", label: "home" },
-  { href: "/schedule", label: "schedule" },
-  { href: "/resources", label: "resources" },
+  { href: "/sponsorship", label: "sponsorship" },
   { href: "/templates", label: "templates" },
 ];
 
@@ -157,7 +156,7 @@ export function SiteHeader() {
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
           >
-            {/* Both icons stay mounted, stacked — the swap crossfades with a
+            {/* Both icons stay mounted, stacked - the swap crossfades with a
                 quarter turn and the button never changes size. */}
             <span className="relative block h-[18px] w-[18px]">
               <Menu

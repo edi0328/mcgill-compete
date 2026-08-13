@@ -7,7 +7,7 @@ import type { CSSProperties } from "react";
  * prefers-reduced-motion (see .gem-spin in globals.css). Decorative only.
  */
 
-// Per-facet reds — static shades that read as lighting as the gem turns.
+// Per-facet reds - static shades that read as lighting as the gem turns.
 const SIDE_REDS = ["#f4404f", "#e51c31", "#c11226", "#970d1d", "#c11226", "#e51c31"];
 const TOP_REDS = ["#ff5a66", "#f23a49", "#d31f31", "#b31424", "#d31f31", "#f23a49"];
 const BOTTOM_REDS = ["#c9182a", "#ab1122", "#8c0c1a", "#700915", "#8c0c1a", "#ab1122"];
@@ -47,7 +47,7 @@ export function Logo3D({ size = 150 }: { size?: number }) {
                 }}
               >
                 <span
-                  className="font-sans font-bold italic text-white"
+                  className="font-sans font-semibold italic text-white"
                   style={{ fontSize: s * 0.5, textShadow: "0 2px 6px rgba(0,0,0,0.25)" }}
                 >
                   CP

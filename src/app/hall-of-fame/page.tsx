@@ -76,7 +76,10 @@ export default function HallOfFamePage() {
                 <span className="font-semibold">{a.name}</span>{" "}
                 <span className="text-fg-muted">· {a.note}</span>{" "}
                 {a.link && (
-                  <a href={a.link} className="font-mono text-[12px] text-cf-blue hover:underline">
+                  <a
+                    href={a.link}
+                    className="font-mono text-[12px] text-fg-muted underline underline-offset-2 decoration-fg-faint hover:text-fg"
+                  >
                     [link]
                   </a>
                 )}

@@ -11,7 +11,7 @@ import {
 export const metadata: Metadata = {
   title: "Templates",
   description:
-    "Copy-paste implementations of the algorithms that win contests — C++ and Python, each with a problem to test it on.",
+    "Copy-paste implementations of the algorithms that win contests: C++ and Python, each with a problem to test it on.",
 };
 
 /** One directory row: name left, complexity right (Swiss-timetable style). */
@@ -23,7 +23,7 @@ function LeafRow({ slug }: { slug: string }) {
       href={`/templates/${slug}`}
       className="group flex items-baseline justify-between gap-4 py-2"
     >
-      <span className="text-[15px] font-medium tracking-tight transition-colors group-hover:text-accent">
+      <span className="text-[15px] font-semibold tracking-tight transition-colors group-hover:text-accent">
         {template.name}
       </span>
       <span className="shrink-0 font-mono text-[12px] text-fg-faint">
@@ -70,7 +70,7 @@ export default function TemplatesPage() {
           Template library
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] text-fg-muted">
-          Copy-paste implementations of the algorithms that win contests — C++
+          Copy-paste implementations of the algorithms that win contests: C++
           and Python, each with a problem to test it on.
         </p>
       </AnimatedSection>

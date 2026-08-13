@@ -6,7 +6,7 @@ import type { PastMaterial } from "@/types/content";
 /**
  * One archived session as a timetable row: mono semester/week slot on the
  * left, topic + level, then material links (or a coming-soon note). Rows are
- * separated by hairline rules from the parent (`divide-y`) — no cards.
+ * separated by hairline rules from the parent (`divide-y`) - no cards.
  */
 export function MaterialRow({ material }: { material: PastMaterial }) {
   const links = [
@@ -20,7 +20,7 @@ export function MaterialRow({ material }: { material: PastMaterial }) {
   return (
     <div className="grid gap-x-6 gap-y-1 py-4 sm:grid-cols-[11ch_1fr]">
       <div className="font-mono leading-relaxed">
-        <span className="block text-[13px] font-medium text-fg">
+        <span className="block text-[13px] font-semibold text-fg">
           {material.semester.toLowerCase()}
         </span>
         <span className="block text-[12px] text-fg-faint">
@@ -29,7 +29,7 @@ export function MaterialRow({ material }: { material: PastMaterial }) {
       </div>
       <div className="flex min-w-0 flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <span className="font-medium tracking-tight">{material.topic}</span>
+          <span className="font-semibold tracking-tight">{material.topic}</span>
           <LevelTag level={material.level} />
         </div>
         {hasRealLinks ? (

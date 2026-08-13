@@ -2,7 +2,7 @@ import type { HallOfFameEntry, TimelineItem } from "@/types/content";
 
 /**
  * ─────────────────────────────────────────────────────────────────────
- *  HALL OF FAME — READ THIS BEFORE EDITING
+ *  HALL OF FAME - READ THIS BEFORE EDITING
  * ─────────────────────────────────────────────────────────────────────
  * Every entry below is a PLACEHOLDER. Do not publish real results until:
  *   1. The result is confirmed by a public source (official ICPC

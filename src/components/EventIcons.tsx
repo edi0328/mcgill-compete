@@ -1,16 +1,17 @@
 import type { SVGProps } from "react";
 
 /**
- * Custom event icons in lucide's stroke style (24×24 grid, round caps),
- * for event families where lucide has no representative glyph.
+ * Custom event icons in lucide's stroke style (24×24 grid, round caps,
+ * r=2.5 circle nodes like GitFork), for event families where lucide has
+ * no representative glyph.
  */
 
 /**
- * Bipartite graph — K(2,2): two nodes per side, all four edges, so the mark
- * reads as two rails with a clean X crossing even at 16–18px. The
- * training-session icon: a nod to flow algorithms and matchings.
+ * Binary tree - a root with two children, the canonical CS hierarchy mark.
+ * Three nodes keep the glyph unambiguous at 16–18px; edges are trimmed to
+ * the circle boundaries so strokes never overlap. The training-session icon.
  */
-export function BipartiteIcon({
+export function BinaryTreeIcon({
   size = 24,
   strokeWidth = 2,
   ...props
@@ -28,18 +29,14 @@ export function BipartiteIcon({
       aria-hidden="true"
       {...props}
     >
-      {/* left column */}
-      <circle cx="5" cy="6" r="2.5" />
-      <circle cx="5" cy="18" r="2.5" />
-      {/* right column */}
-      <circle cx="19" cy="6" r="2.5" />
-      <circle cx="19" cy="18" r="2.5" />
-      {/* rails */}
-      <line x1="7.5" y1="6" x2="16.5" y2="6" />
-      <line x1="7.5" y1="18" x2="16.5" y2="18" />
-      {/* crossing */}
-      <line x1="7" y1="7.7" x2="17" y2="16.3" />
-      <line x1="7" y1="16.3" x2="17" y2="7.7" />
+      {/* root */}
+      <circle cx="12" cy="5" r="2.5" />
+      {/* children */}
+      <circle cx="5" cy="19" r="2.5" />
+      <circle cx="19" cy="19" r="2.5" />
+      {/* edges */}
+      <line x1="10.9" y1="7.2" x2="6.1" y2="16.8" />
+      <line x1="13.1" y1="7.2" x2="17.9" y2="16.8" />
     </svg>
   );
 }

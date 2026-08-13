@@ -1,23 +1,6 @@
 import type { EventLevel, EventType } from "@/types/content";
 
-/** Levels use Codeforces rating colors — gray/green/blue/red. */
-const levelColor: Record<EventLevel, string> = {
-  "Open to all": "text-cf-gray border-cf-gray/40",
-  Beginner: "text-cf-green border-cf-green/40",
-  Intermediate: "text-cf-blue border-cf-blue/40",
-  Advanced: "text-cf-red border-cf-red/40",
-};
-
-export function LevelBadge({ level }: { level: EventLevel }) {
-  return (
-    <span
-      className={`inline-block rounded border px-2 py-1 font-mono text-[11px] ${levelColor[level]}`}
-    >
-      {level.toLowerCase()}
-    </span>
-  );
-}
-
+/** Levels use Codeforces rating colors - gray/green/blue/red. */
 const levelTextColor: Record<EventLevel, string> = {
   "Open to all": "text-cf-gray",
   Beginner: "text-cf-green",
@@ -25,7 +8,7 @@ const levelTextColor: Record<EventLevel, string> = {
   Advanced: "text-cf-red",
 };
 
-/** Level as bare Codeforces-colored mono text — used in timetable rows. */
+/** Level as bare Codeforces-colored mono text - used in timetable rows. */
 export function LevelTag({ level }: { level: EventLevel }) {
   return (
     <span className={`font-mono text-[11px] ${levelTextColor[level]}`}>

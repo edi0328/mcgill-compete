@@ -3,7 +3,7 @@ import { isReal } from "@/lib/placeholders";
 import type { RoadmapStep } from "@/types/content";
 
 /**
- * Numbered step list — used for getting started and both roadmaps.
+ * Numbered step list - used for getting started and both roadmaps.
  * Steps hang off a hairline rule under each number, so the list reads as
  * one connected path rather than a stack of boxes.
  */
@@ -29,7 +29,7 @@ export function RoadmapList({ steps }: { steps: RoadmapStep[] }) {
               {step.link && isReal(step.link.url) && (
                 <a
                   href={step.link.url}
-                  className="mt-2 inline-block font-mono text-[12px] text-cf-blue hover:underline"
+                  className="mt-2 inline-block font-mono text-[12px] text-fg-muted underline underline-offset-2 decoration-fg-faint hover:text-fg"
                 >
                   [{step.link.label}]
                 </a>

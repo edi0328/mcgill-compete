@@ -1,6 +1,6 @@
 import type { ExternalResource } from "@/types/content";
 
-/** Editorial list entry for an external resource — hairline, no card box. */
+/** Editorial list entry for an external resource - hairline, no card box. */
 export function ResourceCard({ resource }: { resource: ExternalResource }) {
   return (
     <a

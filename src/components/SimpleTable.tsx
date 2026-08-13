@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
  * templates, and problem set tables. Cells can be any ReactNode.
  *
  * Below `sm` the table becomes stacked label/value rows (mono label column,
- * like the event timetable rows) — a horizontally scrolling table on a phone
+ * like the event timetable rows) - a horizontally scrolling table on a phone
  * just reads as cut off.
  */
 export function SimpleTable({
@@ -38,7 +38,7 @@ export function SimpleTable({
           <thead>
             <tr className="border-b border-line bg-surface font-mono text-[12px] text-fg-faint">
               {headers.map((h) => (
-                <th key={h} className="px-4 py-3 font-medium">
+                <th key={h} className="px-4 py-3 font-semibold">
                   {h}
                 </th>
               ))}

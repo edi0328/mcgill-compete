@@ -9,45 +9,70 @@ import type { ClubEvent } from "@/types/content";
  * `type` and `level` must be one of the values in src/types/content.ts.
  */
 export const events: ClubEvent[] = [
+  // ── Fall 2026 - mirrors the sponsorship prospectus; update both together ──
   {
-    title: "Kickoff & Info Session",
-    timing: "sept · date tba",
-    type: "Social / kickoff",
+    title: "Online Mock Interviews",
+    timing: "sept · sign-ups aug 31",
+    type: "Mock interviews",
     level: "Open to all",
     description:
-      "What the club does, how the semester is structured, and how to join a training group. There will be pizza.",
+      "Practice a technical interview with an industry engineer on a live coding pad, with feedback right after. Free, online, and open to every McGill student.",
   },
   {
     title: "Beginner Training Sessions",
-    timing: "weekly · from sept",
+    timing: "weekly · sept–nov",
     type: "Beginner training",
     level: "Beginner",
     description:
-      "Core algorithms and problem-solving techniques from the ground up. No prerequisites beyond one intro programming course.",
+      "Core algorithms and problem-solving techniques from the ground up: the fundamentals that show up in technical interviews. No prerequisites beyond one intro programming course.",
   },
   {
     title: "Advanced Training Sessions",
-    timing: "weekly · from sept",
+    timing: "weekly · sept–nov",
     type: "Advanced training",
     level: "Advanced",
     description:
-      "Harder topics for Codeforces Div. 1/2 regulars — graphs, DP, data structures — building toward ICPC.",
+      "Harder contest topics for Codeforces regulars: graphs, DP, and data structures, building toward the ICPC.",
   },
   {
-    title: "NP Compete",
+    title: "NP-Compete",
+    date: "2026-09-26",
+    type: "Club contest",
+    level: "Open to all",
+    description:
+      "Our own ICPC-style contest and the biggest event of the fall: teams of three, problems written by our members, a live scoreboard, food, and prizes.",
+  },
+  {
+    title: "ICPC North America Qualifier",
     timing: "oct · date tba",
     type: "ICPC qualifier",
     level: "Open to all",
     description:
-      "Our ICPC qualifying contest: the results decide who represents McGill at the regionals. Anyone can enter.",
+      "McGill hosts an official site of the NAQ, the first stage on the road to the ICPC World Finals.",
   },
   {
-    title: "FizzBuzz 6.0",
-    timing: "tba",
+    title: "IEEEXtreme",
+    date: "2026-10-31",
+    type: "External contest",
+    level: "Open to all",
+    description:
+      "The IEEE's global 24-hour competition. McGill's teams compete from campus against thousands of teams worldwide.",
+  },
+  {
+    title: "ICPC Northeast NA Regional",
+    timing: "nov · date tba",
+    type: "ICPC qualifier",
+    level: "Advanced",
+    description:
+      "The stage after the Qualifier. McGill hosts an on-campus site for our teams.",
+  },
+  {
+    title: "FizzBuzzed",
+    date: "2026-11-12",
     type: "Club contest",
     level: "Open to all",
     description:
-      "The sixth edition of Compete McGill's own contest, open to everyone at McGill. Details announced on Discord.",
+      "Our season-closing contest: teams solve short coding problems between rounds of drinks, with prizes for the winners. Low stakes and very beginner-friendly.",
   },
   // ── Past events (kept for the archive) ──────────────────────────────
   {

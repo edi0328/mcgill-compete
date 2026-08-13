@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 /**
  * Gentle text-decrypt effect: each character shows a single glitch glyph for
  * a beat, then settles, sweeping left to right (~715ms total). Deterministic
- * and deliberately weak — one brief shimmer, not a glitch storm. Plays once.
+ * and deliberately weak - one brief shimmer, not a glitch storm. Plays once.
  * Used in exactly two places: the home hero H1 (immediate) and the home
  * "what we do" section title (on scroll, via Section's `scramble` prop).
  * The full text renders immediately for no-JS users, screen readers, and

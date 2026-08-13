@@ -1,7 +1,7 @@
 /**
  * Shared content types for the Compete McGill site.
  *
- * Future execs: you normally don't need to touch this file — edit the data
+ * Future execs: you normally don't need to touch this file - edit the data
  * files in `src/content/` instead. Only add fields here if a content file
  * needs something new.
  */
@@ -15,6 +15,7 @@ export type EventType =
   | "ICPC qualifier"
   | "Club contest"
   | "Social / kickoff"
+  | "Mock interviews"
   | "External contest";
 
 export type EventLevel = "Beginner" | "Intermediate" | "Advanced" | "Open to all";
@@ -31,7 +32,7 @@ export interface EventLinks {
 export interface ClubEvent {
   title: string;
   /**
-   * ISO date, e.g. "2026-09-15" — used to sort and split upcoming/past.
+   * ISO date, e.g. "2026-09-15" - used to sort and split upcoming/past.
    * Omit while the date isn't confirmed and set `timing` instead; the event
    * then shows as "coming soon" with the timing string.
    */

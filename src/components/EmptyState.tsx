@@ -3,7 +3,7 @@ import { LinkButton } from "@/components/LinkButton";
 
 /**
  * What/why/one-action pattern for sections whose content isn't live yet.
- * Never ship a bare "nothing here" — say what will appear, why it's empty,
+ * Never ship a bare "nothing here" - say what will appear, why it's empty,
  * and give exactly one way to stay in the loop (usually Discord).
  */
 export function EmptyState({

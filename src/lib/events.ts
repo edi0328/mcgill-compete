@@ -14,14 +14,15 @@ function startOfToday(): Date {
 
 export function upcomingEvents(limit?: number): ClubEvent[] {
   const today = startOfToday();
-  // Undated ("coming soon") events keep their content-file order and lead
-  // the list; confirmed dates follow, soonest first.
+  // Confirmed dates lead, soonest first - the home teaser slices the top of
+  // this list, and a concrete date beats "tba" there. Undated ("coming
+  // soon") events follow in their content-file order.
   const undated = events.filter((e) => !e.date);
   const dated = events
     .filter((e): e is ClubEvent & { date: string } => !!e.date)
     .filter((e) => toLocalDate(e.date) >= today)
     .sort((a, b) => a.date.localeCompare(b.date));
-  const upcoming = [...undated, ...dated];
+  const upcoming = [...dated, ...undated];
   return limit ? upcoming.slice(0, limit) : upcoming;
 }
 

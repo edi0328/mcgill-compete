@@ -4,10 +4,10 @@ import { site } from "@/content/site";
 import { isReal } from "@/lib/placeholders";
 
 /**
- * Footer social row: naked 18px glyphs (no tiles — matches the site's
+ * Footer social row: naked 18px glyphs (no tiles - matches the site's
  * naked-icon convention), muted → ink on hover, with an invisible 36px hit
  * area. Email deliberately stays visible while `site.links.email` is a
- * [PLACEHOLDER] (July 2026 decision: pre-launch TODO, not gated) — fill it
+ * [PLACEHOLDER] (July 2026 decision: pre-launch TODO, not gated) - fill it
  * in src/content/site.ts before launch.
  */
 export function SocialLinks() {

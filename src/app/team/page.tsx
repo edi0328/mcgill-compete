@@ -49,7 +49,7 @@ export default function TeamPage() {
                 <p className="mt-2 text-sm text-fg-muted">{c.description}</p>
                 <a
                   href={c.contact.includes("@") ? `mailto:${c.contact}` : c.contact}
-                  className="mt-3 inline-block font-mono text-[13px] text-cf-blue hover:underline"
+                  className="mt-3 inline-block font-mono text-[13px] text-fg-muted underline underline-offset-2 decoration-fg-faint hover:text-fg"
                 >
                   {c.contact}
                 </a>

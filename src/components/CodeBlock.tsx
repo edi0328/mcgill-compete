@@ -22,7 +22,7 @@ export function CodeBlock({
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
     } catch {
-      // clipboard unavailable (http, old browser) — nothing sensible to do
+      // clipboard unavailable (http, old browser) - nothing sensible to do
     }
   }
 

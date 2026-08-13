@@ -1,7 +1,7 @@
 import type { PastMaterial } from "@/types/content";
 
 /**
- * Archive of past session materials — shown on Schedule (session archive)
+ * Archive of past session materials - shown on Schedule (session archive)
  * and Resources (club materials). Newest first is a good convention.
  * Omit any link field that doesn't exist for a session.
  */

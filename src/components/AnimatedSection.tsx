@@ -11,18 +11,18 @@ import {
 } from "react";
 
 /**
- * The site's only scroll-animation primitives. Keep animation logic here —
+ * The site's only scroll-animation primitives. Keep animation logic here -
  * don't add per-component motion code elsewhere.
  *
- * <AnimatedSection>              — reveals a block when it scrolls into view.
- * <StaggerGrid> + <StaggerItem>  — reveal a list one item at a time.
- * <Parallax>                     — drifts children slower than the scroll.
+ * <AnimatedSection>              - reveals a block when it scrolls into view.
+ * <StaggerGrid> + <StaggerItem>  - reveal a list one item at a time.
+ * <Parallax>                     - drifts children slower than the scroll.
  *
  * Server HTML ships fully visible (no-JS users, crawlers, and pre-hydration
  * paints see everything). On mount, blocks below the fold get
  * data-reveal="pending" (hidden via CSS gated on prefers-reduced-motion),
  * and one shared IntersectionObserver flips them to "in" as they approach
- * the viewport. Everything reveals from y:8px — no direction variants.
+ * the viewport. Everything reveals from y:8px - no direction variants.
  *
  * Reveals are deliberately fast (400ms) so they never gate reading; primary
  * body text (e.g. home About paragraphs) is never wrapped in a reveal at
