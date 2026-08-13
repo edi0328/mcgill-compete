@@ -19,12 +19,11 @@ export const site = {
     "Every semester we run beginner and advanced training tracks, host practice contests under real ICPC rules, and prepare McGill's teams for the ICPC.",
   ],
 
-  // TODO: replace remaining placeholders with real links before launch.
   links: {
     discord: "https://discord.gg/geSn7UvGY",
     instagram: "https://www.instagram.com/competemcgill/",
     github: "https://github.com/competemcgill",
-    email: "[CLUB_EMAIL]",
+    email: "compete.external@gmail.com",
   },
 
   /**
@@ -37,7 +36,7 @@ export const site = {
   calendarEmbedUrl: "[GOOGLE_CALENDAR_EMBED_URL]",
 
   /** Shown in the "Partner with us" strip and on /sponsorship. */
-  sponsorshipEmail: "compete.mcgill@gmail.com",
+  sponsorshipEmail: "compete.external@gmail.com",
 };
 
 /** The weekly rhythm table on the Schedule page. */

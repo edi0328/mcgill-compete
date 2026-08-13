@@ -187,7 +187,7 @@ export default function SponsorshipPage() {
 
       <Section
         title="Get in touch"
-        intro="Email Edison Thai, co-president and sponsorship lead. To help us respond quickly, include your organization, the tier you have in mind, and whether your support would be money, donated goods, or both."
+        intro="To help us respond quickly, include your organization, the tier you have in mind, and whether your support would be money, donated goods, or both."
         flush
       >
         <AnimatedSection>
