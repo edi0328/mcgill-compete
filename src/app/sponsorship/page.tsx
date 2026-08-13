@@ -164,7 +164,7 @@ export default function SponsorshipPage() {
       <Section
         tone="surface"
         title="Single-event sponsorship"
-        intro="If a semester package is more than you need, you can back one event instead."
+        intro="If a semester package is more than you need, you can sponsor individual events instead."
       >
         <StaggerGrid className="divide-y divide-line border-y border-line">
           {singleEvents.map((s) => (
