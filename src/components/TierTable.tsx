@@ -93,7 +93,9 @@ export function TierTable({
                   return (
                     <td
                       key={tiers[i].name}
-                      className={`border-l border-line px-4 py-3 text-center align-middle ${s.bg}`}
+                      className={`border-l border-line px-4 py-3 text-center align-middle ${
+                        included ? s.bg : ""
+                      }`}
                     >
                       {included && (
                         <span aria-hidden="true" className={s.text}>

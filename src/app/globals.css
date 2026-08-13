@@ -50,16 +50,17 @@ html[data-theme="dark"] {
   --cf-blue: light-dark(#2364e8, #6aa2ff);
   --cf-red: light-dark(#d92c2c, #ff6159);
   /* Sponsorship tier colors, matching the prospectus PDF table. Functional
-     color like the CF levels: the metal names are the meaning. Column
-     washes stay low-alpha so the paper-and-red palette keeps the lead. */
+     color like the CF levels: the metal names are the meaning. The wash
+     covers only the perks a tier includes, so block height encodes value;
+     light values are the PDF's own pastels. */
   --tier-bronze: light-dark(#96683d, #cf9a66);
-  --tier-bronze-bg: light-dark(rgba(150, 104, 61, 0.07), rgba(207, 154, 102, 0.07));
+  --tier-bronze-bg: light-dark(#f6efe7, rgba(207, 154, 102, 0.14));
   --tier-silver: light-dark(#6f7683, #a8a8ad);
-  --tier-silver-bg: light-dark(rgba(111, 118, 131, 0.07), rgba(200, 205, 214, 0.06));
+  --tier-silver-bg: light-dark(#eef0f2, rgba(200, 205, 214, 0.12));
   --tier-gold: light-dark(#a67c0e, #d4a72c);
-  --tier-gold-bg: light-dark(rgba(166, 124, 14, 0.08), rgba(212, 167, 44, 0.07));
+  --tier-gold-bg: light-dark(#fbf4e0, rgba(212, 167, 44, 0.14));
   --tier-platinum: light-dark(#33415c, #8fb0e8);
-  --tier-platinum-bg: light-dark(rgba(51, 65, 92, 0.08), rgba(143, 176, 232, 0.07));
+  --tier-platinum-bg: light-dark(#e3ebf6, rgba(143, 176, 232, 0.14));
 }
 
 @theme inline {
