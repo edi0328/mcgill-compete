@@ -120,7 +120,7 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`nav-link relative rounded px-3 py-1.5 font-mono text-[12px] whitespace-nowrap transition-colors ${
+                  className={`nav-link relative rounded px-3 py-1.5 font-mono text-[14px] whitespace-nowrap transition-colors ${
                     active
                       ? "text-fg"
                       : "text-fg-muted hover:text-fg focus-visible:text-fg"
