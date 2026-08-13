@@ -20,7 +20,7 @@ export function MaterialRow({ material }: { material: PastMaterial }) {
   return (
     <div className="grid gap-x-6 gap-y-1 py-4 sm:grid-cols-[11ch_1fr]">
       <div className="font-mono leading-relaxed">
-        <span className="block text-[13px] font-semibold text-fg">
+        <span className="block text-[12px] font-semibold text-fg">
           {material.semester.toLowerCase()}
         </span>
         <span className="block text-[12px] text-fg-faint">

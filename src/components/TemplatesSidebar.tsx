@@ -79,7 +79,7 @@ export function TemplatesSidebar({
             <Link
               href={`/templates/${leaf.slug}`}
               aria-current={active ? "page" : undefined}
-              className={`block border-l py-1 pl-3 text-[13px] transition-colors ${
+              className={`block border-l py-1 pl-3 text-[12px] transition-colors ${
                 active
                   ? "border-accent font-semibold text-fg"
                   : "border-line text-fg-muted hover:border-fg-faint hover:text-fg"
@@ -103,7 +103,7 @@ export function TemplatesSidebar({
     if (leaves.length === 0 && children.length === 0) return null;
     return (
       <div key={group.name} className="pt-3">
-        <p className="font-mono text-[11px] text-fg-faint">{group.name}</p>
+        <p className="font-mono text-[12px] text-fg-faint">{group.name}</p>
         {leaves.length > 0 && leafList(leaves)}
         {children}
       </div>
@@ -128,7 +128,7 @@ export function TemplatesSidebar({
           type="button"
           onClick={() => toggleTopic(topic.name)}
           aria-expanded={expanded}
-          className="flex w-full items-center justify-between gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-fg-faint transition-colors hover:text-fg-muted"
+          className="flex w-full items-center justify-between gap-2 font-mono text-[12px] uppercase tracking-[0.08em] text-fg-faint transition-colors hover:text-fg-muted"
         >
           <span className="text-left">{topic.name}</span>
           <span className="flex shrink-0 items-center gap-2">
@@ -162,7 +162,7 @@ export function TemplatesSidebar({
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="panel flex w-full items-center justify-between px-4 py-2 font-mono text-[13px] text-fg-muted transition-colors hover:text-fg lg:hidden"
+        className="panel flex w-full items-center justify-between px-4 py-2 font-mono text-[12px] text-fg-muted transition-colors hover:text-fg lg:hidden"
       >
         browse templates ({total})
         <ChevronDown
@@ -188,7 +188,7 @@ export function TemplatesSidebar({
             onChange={(e) => setQuery(e.target.value)}
             placeholder="search"
             aria-label="Search templates"
-            className="w-full rounded border border-line bg-surface py-2 pl-8 pr-3 font-mono text-[13px] text-fg placeholder:text-fg-faint focus:border-fg-faint focus:outline-none"
+            className="w-full rounded border border-line bg-surface py-2 pl-8 pr-3 font-mono text-[12px] text-fg placeholder:text-fg-faint focus:border-fg-faint focus:outline-none"
           />
         </div>
 

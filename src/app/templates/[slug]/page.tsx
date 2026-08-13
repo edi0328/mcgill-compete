@@ -72,7 +72,7 @@ export default async function TemplatePage({
       <AnimatedSection>
         <nav
           aria-label="Breadcrumb"
-          className="font-mono text-[13px] text-fg-muted"
+          className="font-mono text-[12px] text-fg-muted"
         >
           <Link href="/templates" className="transition-colors hover:text-accent">
             templates
@@ -86,7 +86,7 @@ export default async function TemplatePage({
         </nav>
 
         <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3">
-          <h1 className="font-display text-3xl tracking-tight sm:text-4xl">
+          <h1 className="font-display text-2xl tracking-tight sm:text-[32px]">
             {template.name}
           </h1>
           <span className="rounded border border-line bg-surface px-2 py-1 font-mono text-[12px] text-fg-muted">
@@ -94,7 +94,7 @@ export default async function TemplatePage({
           </span>
         </div>
 
-        <p className="mt-4 max-w-[65ch] text-[15px] leading-relaxed text-fg-muted">
+        <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-fg-muted">
           {template.description}
         </p>
       </AnimatedSection>
@@ -110,7 +110,7 @@ export default async function TemplatePage({
           >
             {template.exampleProblem.name} ↗
           </a>
-          <p className="mt-1 text-sm text-fg-muted">{template.exampleProblem.note}</p>
+          <p className="mt-1 text-base text-fg-muted">{template.exampleProblem.note}</p>
         </div>
       </AnimatedSection>
 
@@ -142,7 +142,7 @@ export default async function TemplatePage({
               <Link
                 key={t.slug}
                 href={`/templates/${t.slug}`}
-                className="font-mono text-[13px] text-fg-muted underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                className="font-mono text-[12px] text-fg-muted underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
               >
                 {t.name}
               </Link>

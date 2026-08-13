@@ -65,7 +65,7 @@ export function CodeBlock({
         </button>
       </div>
       <div
-        className="[&_pre]:overflow-x-auto [&_pre]:p-4 [&_pre]:font-mono [&_pre]:text-[13px] [&_pre]:leading-relaxed"
+        className="[&_pre]:overflow-x-auto [&_pre]:p-4 [&_pre]:font-mono [&_pre]:text-[12px] [&_pre]:leading-relaxed"
         dangerouslySetInnerHTML={{ __html: variants[active].html }}
       />
     </div>

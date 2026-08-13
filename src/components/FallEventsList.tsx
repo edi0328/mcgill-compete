@@ -13,9 +13,9 @@ export function FallEventsList() {
         {fallEvents.map((e) => (
           <StaggerItem key={e.title}>
             <div className="py-6 sm:grid sm:grid-cols-[11rem_1fr] sm:gap-x-4">
-              <p className="font-mono text-[13px] text-fg-muted">{e.date}</p>
+              <p className="font-mono text-[12px] text-fg-muted">{e.date}</p>
               <div className="mt-2 sm:mt-0">
-                <h3 className="text-lg font-semibold tracking-tight">
+                <h3 className="text-base font-semibold tracking-tight">
                   {e.title}
                 </h3>
                 <p className="mt-1 max-w-[65ch] text-base leading-relaxed text-fg-muted">

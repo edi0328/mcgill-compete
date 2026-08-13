@@ -45,7 +45,7 @@ export function TeamMemberCard({ member }: { member: TeamMember }) {
           {member.programYear && (
             <p className="font-mono text-[12px] text-fg-faint">{member.programYear}</p>
           )}
-          {member.bio && <p className="text-sm text-fg-muted">{member.bio}</p>}
+          {member.bio && <p className="text-base text-fg-muted">{member.bio}</p>}
         </div>
       )}
 

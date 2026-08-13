@@ -87,11 +87,9 @@ export function EventCard({
   return (
     <article className="grid gap-x-6 gap-y-2 py-5 sm:grid-cols-[11ch_1fr]">
       <div className="font-mono leading-relaxed">
-        <span className="block text-[13px] font-semibold text-fg">{when1}</span>
+        <span className="block text-[12px] font-semibold text-fg">{when1}</span>
         {when2 && (
-          <span
-            className={`block text-fg-faint ${compact ? "text-[13px]" : "text-[12px]"}`}
-          >
+          <span className="block text-[12px] text-fg-faint">
             {when2}
           </span>
         )}
@@ -100,16 +98,12 @@ export function EventCard({
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <Icon size={18} strokeWidth={1.75} className="shrink-0 text-fg-muted" />
-          <h3
-            className={`${compact ? "text-base" : "text-lg"} font-semibold tracking-tight`}
-          >
+          <h3 className="text-base font-semibold tracking-tight">
             {event.title}
           </h3>
           {!compact && <LevelTag level={event.level} />}
         </div>
-        <p
-          className={`mt-1 pl-7 leading-relaxed text-fg-muted ${compact ? "text-base" : "text-sm"}`}
-        >
+        <p className="mt-1 pl-7 text-base leading-relaxed text-fg-muted">
           {event.description}
         </p>
         {!compact && place && (

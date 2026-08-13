@@ -97,7 +97,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
-          className="flex items-center gap-2 rounded font-display text-sm tracking-tight"
+          className="flex items-center gap-2 rounded font-display text-base tracking-tight"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -120,7 +120,7 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`nav-link relative rounded px-3 py-1.5 font-mono text-[13px] whitespace-nowrap transition-colors ${
+                  className={`nav-link relative rounded px-3 py-1.5 font-mono text-[12px] whitespace-nowrap transition-colors ${
                     active
                       ? "text-fg"
                       : "text-fg-muted hover:text-fg focus-visible:text-fg"
@@ -206,7 +206,7 @@ export function SiteHeader() {
                       href={item.href}
                       onClick={() => setOpen(false)}
                       aria-current={active ? "page" : undefined}
-                      className={`block rounded px-2 py-2 font-mono text-sm ${
+                      className={`block rounded px-2 py-2 font-mono text-base ${
                         active ? "text-fg" : "text-fg-muted"
                       }`}
                     >

@@ -46,10 +46,10 @@ export default function TeamPage() {
             <StaggerItem key={c.category}>
               <div className="h-full rounded-lg border border-line bg-surface p-5">
                 <h3 className="font-semibold tracking-tight">{c.category}</h3>
-                <p className="mt-2 text-sm text-fg-muted">{c.description}</p>
+                <p className="mt-2 text-base text-fg-muted">{c.description}</p>
                 <a
                   href={c.contact.includes("@") ? `mailto:${c.contact}` : c.contact}
-                  className="mt-3 inline-block font-mono text-[13px] text-fg-muted underline underline-offset-2 decoration-fg-faint hover:text-fg"
+                  className="mt-3 inline-block font-mono text-[12px] text-fg-muted underline underline-offset-2 decoration-fg-faint hover:text-fg"
                 >
                   {c.contact}
                 </a>

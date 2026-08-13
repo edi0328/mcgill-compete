@@ -11,14 +11,14 @@ export function ResourceCard({ resource }: { resource: ExternalResource }) {
     >
       <h3 className="font-semibold tracking-tight transition-colors group-hover:text-accent">
         {resource.name}{" "}
-        <span className="font-mono text-[13px] text-fg-faint transition-colors group-hover:text-accent">
+        <span className="font-mono text-[12px] text-fg-faint transition-colors group-hover:text-accent">
           ↗
         </span>
       </h3>
-      <p className="mt-1 text-sm text-fg-muted">{resource.description}</p>
+      <p className="mt-1 text-base text-fg-muted">{resource.description}</p>
       <div className="mt-2 flex flex-wrap gap-2">
         {resource.tags.map((tag) => (
-          <span key={tag} className="font-mono text-[11px] text-fg-faint">
+          <span key={tag} className="font-mono text-[12px] text-fg-faint">
             #{tag}
           </span>
         ))}

@@ -86,7 +86,7 @@ export default function Home() {
           {activities.map((a) => (
             <StaggerItem key={a.title}>
               <div className="py-6 sm:grid sm:grid-cols-[14rem_1fr] sm:items-baseline sm:gap-x-4">
-                <h3 className="text-lg font-semibold tracking-tight text-fg">
+                <h3 className="text-base font-semibold tracking-tight text-fg">
                   {a.title}
                 </h3>
                 <p className="mt-2 text-base leading-relaxed text-fg-muted sm:mt-0">

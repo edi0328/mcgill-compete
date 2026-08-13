@@ -21,7 +21,7 @@ export function SimpleTable({
     <>
       <div className="divide-y divide-line rounded-lg border border-line sm:hidden">
         {rows.map((row, i) => (
-          <div key={i} className="grid grid-cols-[10ch_1fr] gap-x-4 gap-y-2 p-4 text-sm">
+          <div key={i} className="grid grid-cols-[10ch_1fr] gap-x-4 gap-y-2 p-4 text-base">
             {row.map((cell, j) => (
               <div key={j} className="col-span-2 grid grid-cols-subgrid">
                 <span className="font-mono text-[12px] leading-6 text-fg-faint">
@@ -34,7 +34,7 @@ export function SimpleTable({
         ))}
       </div>
       <div className="hidden overflow-x-auto rounded-lg border border-line sm:block">
-        <table className="w-full text-left text-sm" style={{ minWidth }}>
+        <table className="w-full text-left text-base" style={{ minWidth }}>
           <thead>
             <tr className="border-b border-line bg-surface font-mono text-[12px] text-fg-faint">
               {headers.map((h) => (

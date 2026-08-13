@@ -31,7 +31,7 @@ export function Section({
   flush?: boolean;
   scramble?: boolean;
 }) {
-  const headingClass = "font-display text-2xl tracking-tight sm:text-3xl";
+  const headingClass = "font-display text-2xl tracking-tight sm:text-[32px]";
   const inner = (
     <section
       id={id}

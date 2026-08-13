@@ -31,7 +31,7 @@ export default function HallOfFamePage() {
   return (
     <>
       <div className="mx-auto max-w-5xl px-4 pt-10 sm:px-6">
-        <div className="rounded-lg border border-accent/30 bg-accent/5 p-4 font-mono text-[13px] text-fg-muted">
+        <div className="rounded-lg border border-accent/30 bg-accent/5 p-4 font-mono text-[12px] text-fg-muted">
           <span className="text-accent-soft">{"// note:"}</span> this page is being
           assembled from official sources. Entries marked{" "}
           <span className="text-accent-soft">TODO: verify</span> are placeholders
@@ -71,7 +71,7 @@ export default function HallOfFamePage() {
             {notableAlumni.map((a) => (
               <li
                 key={a.name}
-                className="rounded-lg border border-line bg-surface px-4 py-3 text-sm"
+                className="rounded-lg border border-line bg-surface px-4 py-3 text-base"
               >
                 <span className="font-semibold">{a.name}</span>{" "}
                 <span className="text-fg-muted">· {a.note}</span>{" "}

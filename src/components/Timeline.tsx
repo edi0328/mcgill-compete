@@ -13,10 +13,10 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
             className="absolute -left-[31px] top-1.5 h-2.5 w-2.5 rounded-full border border-accent bg-paper"
           />
           <div className="flex flex-wrap items-center gap-3">
-            <span className="font-mono text-sm text-accent">{item.year}</span>
+            <span className="font-mono text-base text-accent">{item.year}</span>
             <VerifyBadge verified={item.verified} />
           </div>
-          <p className="mt-2 text-sm text-fg-muted">{item.text}</p>
+          <p className="mt-2 text-base text-fg-muted">{item.text}</p>
         </StaggerItem>
       ))}
     </StaggerGrid>

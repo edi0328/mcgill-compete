@@ -41,7 +41,7 @@ export function TierTable({
                 </span>
                 <span className="font-mono text-[12px] text-fg-muted">{t.price}</span>
               </div>
-              <ul className="space-y-2 px-4 py-3 text-sm text-fg-muted">
+              <ul className="space-y-2 px-4 py-3 text-base text-fg-muted">
                 {i > 0 && (
                   <li className="font-mono text-[12px] text-fg-faint">
                     everything in {tiers[i - 1].name}, plus
@@ -62,7 +62,7 @@ export function TierTable({
       </div>
 
       <div className="hidden overflow-x-auto rounded-lg border border-line sm:block">
-        <table className="w-full text-left text-sm" style={{ minWidth: "680px" }}>
+        <table className="w-full text-left text-base" style={{ minWidth: "680px" }}>
           <thead>
             <tr className="border-b border-line">
               <th className="px-4 py-3" />
