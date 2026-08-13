@@ -101,7 +101,7 @@ export default function SponsorshipPage() {
               variant="primary"
               external
             >
-              <FileText size={15} /> download pdf
+              <FileText size={15} /> download the prospectus
             </LinkButton>
           </div>
         </AnimatedSection>
