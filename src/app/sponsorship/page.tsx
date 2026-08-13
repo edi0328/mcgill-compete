@@ -8,7 +8,7 @@ import {
 import { FallEventsList } from "@/components/FallEventsList";
 import { LinkButton } from "@/components/LinkButton";
 import { Section } from "@/components/Section";
-import { SimpleTable } from "@/components/SimpleTable";
+import { TierTable } from "@/components/TierTable";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -45,12 +45,11 @@ const tierBenefits: { benefit: string; tiers: boolean[] }[] = [
   },
 ];
 
-const tierHeaders = [
-  "",
-  "bronze $500",
-  "silver $1,000",
-  "gold $2,000",
-  "platinum $5,000",
+const tiers = [
+  { name: "bronze", price: "$500" },
+  { name: "silver", price: "$1,000" },
+  { name: "gold", price: "$2,000" },
+  { name: "platinum", price: "$5,000" },
 ];
 
 const singleEvents = [
@@ -155,20 +154,7 @@ export default function SponsorshipPage() {
         intro="Each tier covers every event and training session this fall. Higher tiers mainly add recruiting access: resumes and time in front of students. Prices are in CAD, and we are happy to build a custom package around any budget."
       >
         <AnimatedSection>
-          <SimpleTable
-            headers={tierHeaders}
-            minWidth="680px"
-            rows={tierBenefits.map((row) => [
-              <span key="b" className="text-fg-muted">
-                {row.benefit}
-              </span>,
-              ...row.tiers.map((included, i) => (
-                <span key={tierHeaders[i + 1]} aria-hidden={!included}>
-                  {included ? "✓" : ""}
-                </span>
-              )),
-            ])}
-          />
+          <TierTable tiers={tiers} rows={tierBenefits} />
           <p className="mt-4 font-mono text-[12px] text-fg-faint">
             Platinum is capped at two sponsors.
           </p>

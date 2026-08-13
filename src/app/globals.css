@@ -49,6 +49,17 @@ html[data-theme="dark"] {
   --cf-green: light-dark(#1f9e4d, #2fbf71);
   --cf-blue: light-dark(#2364e8, #6aa2ff);
   --cf-red: light-dark(#d92c2c, #ff6159);
+  /* Sponsorship tier colors, matching the prospectus PDF table. Functional
+     color like the CF levels: the metal names are the meaning. Column
+     washes stay low-alpha so the paper-and-red palette keeps the lead. */
+  --tier-bronze: light-dark(#96683d, #cf9a66);
+  --tier-bronze-bg: light-dark(rgba(150, 104, 61, 0.07), rgba(207, 154, 102, 0.07));
+  --tier-silver: light-dark(#6f7683, #a8a8ad);
+  --tier-silver-bg: light-dark(rgba(111, 118, 131, 0.07), rgba(200, 205, 214, 0.06));
+  --tier-gold: light-dark(#a67c0e, #d4a72c);
+  --tier-gold-bg: light-dark(rgba(166, 124, 14, 0.08), rgba(212, 167, 44, 0.07));
+  --tier-platinum: light-dark(#33415c, #8fb0e8);
+  --tier-platinum-bg: light-dark(rgba(51, 65, 92, 0.08), rgba(143, 176, 232, 0.07));
 }
 
 @theme inline {
@@ -66,6 +77,14 @@ html[data-theme="dark"] {
   --color-cf-green: var(--cf-green);
   --color-cf-blue: var(--cf-blue);
   --color-cf-red: var(--cf-red);
+  --color-tier-bronze: var(--tier-bronze);
+  --color-tier-bronze-bg: var(--tier-bronze-bg);
+  --color-tier-silver: var(--tier-silver);
+  --color-tier-silver-bg: var(--tier-silver-bg);
+  --color-tier-gold: var(--tier-gold);
+  --color-tier-gold-bg: var(--tier-gold-bg);
+  --color-tier-platinum: var(--tier-platinum);
+  --color-tier-platinum-bg: var(--tier-platinum-bg);
 
   --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
