@@ -49,7 +49,7 @@ const tiers = [
   { name: "bronze", price: "$500" },
   { name: "silver", price: "$1,000" },
   { name: "gold", price: "$2,000" },
-  { name: "platinum", price: "$5,000" },
+  { name: "platinum", price: "$5,000+" },
 ];
 
 const singleEvents = [
