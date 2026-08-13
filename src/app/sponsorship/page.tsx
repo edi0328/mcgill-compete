@@ -142,8 +142,8 @@ export default function SponsorshipPage() {
               cost should never keep a student from competing. To make that
               possible, we need to cover food on contest days, prizes,
               printing, and venue costs for the competitions we host on campus.
-              All contributions go directly into the events, and donated food,
-              prizes, or software licenses are as welcome as cash.
+              All contributions go directly into the events, and support can
+              come as cash or as donated food, prizes, or software licenses.
             </p>
           </div>
         </AnimatedSection>
