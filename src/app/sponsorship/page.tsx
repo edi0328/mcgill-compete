@@ -136,7 +136,7 @@ export default function SponsorshipPage() {
         title="What are we raising money for?"
       >
         <AnimatedSection>
-          <div className="max-w-[65ch] text-base leading-relaxed text-fg-muted">
+          <div className="max-w-[65ch] border-l-2 border-accent pl-6 text-base leading-relaxed text-fg-muted">
             <p>
               Participation is free for every event except FizzBuzzed, because
               cost should never keep a student from competing. To make that
