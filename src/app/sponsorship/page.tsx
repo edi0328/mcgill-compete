@@ -84,7 +84,7 @@ export default function SponsorshipPage() {
   return (
     <>
       <Section
-        title="Sponsor Compete McGill"
+        title="Sponsorship"
         intro="Between September and November we run seven events, from weekly training sessions to NP-Compete and two official ICPC contests hosted at McGill. One sponsorship covers all of them."
       >
         <AnimatedSection>
@@ -172,7 +172,7 @@ export default function SponsorshipPage() {
               <div className="py-5 sm:grid sm:grid-cols-[11rem_1fr] sm:items-baseline sm:gap-x-4">
                 <p className="font-mono text-[13px] text-fg-muted">{s.price}</p>
                 <div className="mt-1 sm:mt-0">
-                  <h3 className="text-base font-semibold tracking-tight">
+                  <h3 className="text-[17px] font-semibold tracking-tight">
                     {s.title}
                   </h3>
                   <p className="mt-1 max-w-[65ch] text-base leading-relaxed text-fg-muted">
