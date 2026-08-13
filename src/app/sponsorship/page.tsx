@@ -172,7 +172,7 @@ export default function SponsorshipPage() {
               <div className="py-5 sm:grid sm:grid-cols-[11rem_1fr] sm:items-baseline sm:gap-x-4">
                 <p className="font-mono text-[13px] text-fg-muted">{s.price}</p>
                 <div className="mt-1 sm:mt-0">
-                  <h3 className="text-[17px] font-semibold tracking-tight">
+                  <h3 className="text-lg font-semibold tracking-tight">
                     {s.title}
                   </h3>
                   <p className="mt-1 max-w-[65ch] text-base leading-relaxed text-fg-muted">

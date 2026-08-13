@@ -101,7 +101,7 @@ export function EventCard({
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <Icon size={18} strokeWidth={1.75} className="shrink-0 text-fg-muted" />
           <h3
-            className={`${compact ? "text-base" : "text-[17px]"} font-semibold tracking-tight`}
+            className={`${compact ? "text-base" : "text-lg"} font-semibold tracking-tight`}
           >
             {event.title}
           </h3>
