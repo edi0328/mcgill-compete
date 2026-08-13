@@ -22,7 +22,7 @@ export const site = {
   // TODO: replace remaining placeholders with real links before launch.
   links: {
     discord: "https://discord.gg/geSn7UvGY",
-    instagram: "https://www.instagram.com/computemcgill/",
+    instagram: "https://www.instagram.com/competemcgill/",
     github: "https://github.com/competemcgill",
     email: "[CLUB_EMAIL]",
   },
