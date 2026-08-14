@@ -69,7 +69,7 @@ export const contactChannels: ContactChannel[] = [
   {
     category: "Sponsorship",
     description: "Partnerships, prizes, and recruiting events.",
-    contact: "[SPONSORSHIP_EMAIL]",
+    contact: "compete.external@gmail.com",
   },
   {
     category: "ICPC / team formation",
