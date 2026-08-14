@@ -17,7 +17,7 @@ export const fallEvents = [
   {
     date: "Sat, Sept 26",
     title: "NP-Compete",
-    text: "Our own ICPC-style contest, and our largest event of the fall: teams of three, problems written by our members, a live scoreboard, food, and prizes. Last year, 190 students competed on 93 teams. Title sponsorship is available.",
+    text: "Our own ICPC-style contest: teams of up to three, problems written by our members, a live scoreboard, food, and prizes. Last year, 190 students competed on 93 teams. Title sponsorship is available.",
   },
   {
     date: "October, TBA*",

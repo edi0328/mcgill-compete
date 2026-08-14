@@ -6,6 +6,7 @@ import {
   StaggerItem,
 } from "@/components/AnimatedSection";
 import { FallEventsList } from "@/components/FallEventsList";
+import { WinterEventsList } from "@/components/WinterEventsList";
 import { LinkButton } from "@/components/LinkButton";
 import { Section } from "@/components/Section";
 import { TierTable } from "@/components/TierTable";
@@ -14,13 +15,14 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Sponsorship",
   description:
-    "Sponsor Compete McGill's fall season: the events, tiers, single-event options, and the full prospectus.",
+    "Sponsor Compete McGill's 2026–27 season: the fall and winter events, tiers, single-event options, and the full prospectus.",
 };
 
 /**
- * This page carries the full Fall 2026 prospectus, minus the club intro the
+ * This page carries the full 2026-27 prospectus, minus the club intro the
  * home page already covers. Mirrors the PDF - update both together. The
- * event list itself lives in src/content/fallEvents.ts (shared with home).
+ * event lists live in src/content/fallEvents.ts (shared with home) and
+ * src/content/winterEvents.ts.
  */
 
 /** Benefit × tier matrix, same rows and order as the PDF's table. */
@@ -33,35 +35,49 @@ const tierBenefits: { benefit: string; tiers: boolean[] }[] = [
   { benefit: "Your merchandise distributed at events", tiers: [false, true, true, true] },
   { benefit: "Job postings shared to our Discord", tiers: [false, true, true, true] },
   { benefit: "Host a tech talk or workshop", tiers: [false, false, true, true] },
-  { benefit: "Resume book after the events", tiers: [false, false, true, true] },
-  { benefit: "Resume book before the events", tiers: [false, false, false, true] },
   {
-    benefit: "Title sponsorship of a flagship event. Your team presents the awards",
+    benefit: "Resume book after each semester's events",
+    tiers: [false, false, true, true],
+  },
+  {
+    benefit: "Name an award at one of our contests",
+    tiers: [false, false, true, true],
+  },
+  {
+    benefit: "Resume book before each semester's events",
     tiers: [false, false, false, true],
   },
   {
-    benefit: "First option to renew for Winter 2027",
+    benefit: "Introductions to top contest finishers who opt in",
+    tiers: [false, false, false, true],
+  },
+  {
+    benefit: "Run your own event with our members",
+    tiers: [false, false, false, true],
+  },
+  {
+    benefit: "Title sponsorship of a flagship event. Your team presents the awards",
     tiers: [false, false, false, true],
   },
 ];
 
 const tiers = [
-  { name: "bronze", price: "$500" },
-  { name: "silver", price: "$1,000" },
-  { name: "gold", price: "$2,000" },
-  { name: "platinum", price: "$5,000+" },
+  { name: "bronze", price: "$1,000" },
+  { name: "silver", price: "$3,000" },
+  { name: "gold", price: "$5,000" },
+  { name: "platinum", price: "$10,000+" },
 ];
 
 const singleEvents = [
   {
     price: "no cost",
     title: "Mock interview partner",
-    text: "Send your engineers as interviewers for our online mock interview sessions.",
+    text: "Send your engineers as interviewers in September and January.",
   },
   {
     price: "$600",
     title: "NP-Compete food sponsor",
-    text: "Feed the competitors at our flagship contest, with your branding at the food stations and a thank-you from the stage.",
+    text: "Feed the competitors, with your branding at the food stations.",
   },
   {
     price: "$300",
@@ -72,6 +88,11 @@ const singleEvents = [
     price: "$500",
     title: "FizzBuzzed co-host",
     text: "Co-host the night with us. Prizes are awarded in your name.",
+  },
+  {
+    price: "$500",
+    title: "AI Bot Competition food sponsor",
+    text: "Feed the competitors through the tournament and the live final.",
   },
   {
     price: "donation",
@@ -85,19 +106,20 @@ export default function SponsorshipPage() {
     <>
       <Section
         title="Sponsorship"
-        intro="Between September and November we run seven events, from weekly training sessions to NP-Compete and two official ICPC contests hosted at McGill. One sponsorship covers all of them."
+        intro="Between September and April we run events in both semesters, from weekly training sessions to NP-Compete, two official ICPC contests hosted at McGill, and our AI bot competition. One sponsorship covers all of them."
       >
         <AnimatedSection>
           <p className="max-w-2xl text-base leading-relaxed text-fg-muted">
             Last fall&apos;s NP-Compete drew 190 students on 93 teams, from
             first-years in the beginner track to Codeforces regulars training
             for McGill&apos;s ICPC teams. Almost all study computer science,
-            software engineering, or math, and most are looking for internships
-            or full-time roles.
+            software engineering, or math. Most are looking for internships or
+            full-time roles. Our community Discord counts more than 1,500
+            members.
           </p>
           <div className="mt-6">
             <LinkButton
-              href="/sponsorship-prospectus-fall2026.pdf"
+              href="/sponsorship-prospectus-2026-27.pdf"
               variant="primary"
               external
             >
@@ -126,13 +148,16 @@ export default function SponsorshipPage() {
       <Section
         id="events"
         title="Fall 2026 events"
-        intro="A sponsorship covers every event below, and sponsors are credited at each one."
+        intro="One sponsorship covers every event in both semesters, and sponsors are credited at each one."
       >
         <FallEventsList />
       </Section>
 
+      <Section tone="surface" title="Winter 2027 events">
+        <WinterEventsList />
+      </Section>
+
       <Section
-        tone="surface"
         title="What are we raising money for?"
       >
         <AnimatedSection>
@@ -150,8 +175,9 @@ export default function SponsorshipPage() {
       </Section>
 
       <Section
+        tone="surface"
         title="Tiers"
-        intro="Each tier covers every event and training session this fall. Higher tiers mainly add recruiting access: resumes and time in front of students. Prices are in CAD, and we are happy to build a custom package around any budget."
+        intro="Each tier covers every event and training session in both semesters, September through April, with one agreement and one invoice. Higher tiers mainly add recruiting access: resumes and time in front of students. Prices are in CAD, and we are happy to build a custom package around any budget."
       >
         <AnimatedSection>
           <TierTable tiers={tiers} rows={tierBenefits} />
@@ -162,9 +188,8 @@ export default function SponsorshipPage() {
       </Section>
 
       <Section
-        tone="surface"
         title="Single-event sponsorship"
-        intro="If a semester package is more than you need, you can sponsor individual events instead."
+        intro="If a full-year package is more than you need, you can sponsor individual events instead."
       >
         <StaggerGrid className="divide-y divide-line border-y border-line">
           {singleEvents.map((s) => (
@@ -186,8 +211,9 @@ export default function SponsorshipPage() {
       </Section>
 
       <Section
+        tone="surface"
         title="Get in touch"
-        intro="To help us respond quickly, include your organization, the tier you have in mind, and whether your support would be money, donated goods, or both."
+        intro="Include your organization, the tier you have in mind, and whether your support is money or donated goods."
         flush
       >
         <AnimatedSection>
