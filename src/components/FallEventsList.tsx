@@ -5,7 +5,7 @@ import {
 } from "@/components/AnimatedSection";
 import { fallEvents } from "@/content/fallEvents";
 
-/** The Fall 2026 event list + TBA footnote, shared by home and sponsorship. */
+/** The Fall 2026 event list + Qualifier footnote, shared by home and sponsorship. */
 export function FallEventsList() {
   return (
     <>
@@ -28,8 +28,8 @@ export function FallEventsList() {
       </StaggerGrid>
       <AnimatedSection>
         <p className="mt-4 font-mono text-[12px] text-fg-faint">
-          * ICPC sets the exact Qualifier and Regional dates. We will pass
-          them on to sponsors as soon as they are announced.
+          * ICPC sets the exact Qualifier date. We will pass it on to sponsors
+          as soon as it is announced.
         </p>
       </AnimatedSection>
     </>

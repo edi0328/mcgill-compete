@@ -30,7 +30,7 @@ export const fallEvents = [
     text: "The IEEE's global 24-hour competition. McGill's teams compete from campus against thousands of teams worldwide.",
   },
   {
-    date: "November, TBA*",
+    date: "Sun, Nov 8",
     title: "ICPC Northeast North America Regional",
     text: "The next stage after the qualifier. We arrange the on-campus site for McGill's teams.",
   },

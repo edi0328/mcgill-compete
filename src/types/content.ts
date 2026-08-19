@@ -49,27 +49,6 @@ export interface ClubEvent {
   links?: EventLinks;
 }
 
-export interface TeamMember {
-  name: string;
-  role: string;
-  /** Lower numbers are shown first. */
-  order: number;
-  /** Path under /public, e.g. "/team/alex.jpg". Omit for the default avatar. */
-  photo?: string;
-  programYear?: string;
-  bio?: string;
-  links?: { label: string; url: string }[];
-  /** Academic year the member is active, e.g. "2026–2027". */
-  activeYear: string;
-}
-
-export interface ContactChannel {
-  category: string;
-  description: string;
-  /** Email address or URL. */
-  contact: string;
-}
-
 export interface ExternalResource {
   name: string;
   url: string;
