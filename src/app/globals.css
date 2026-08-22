@@ -188,6 +188,47 @@ h3 {
   outline-offset: 2px;
 }
 
+/* Contact fields use the underline itself as their focus/validation cue.
+   Override the global focus ring and browser-native invalid-field glow so
+   form controls never become red rectangles. */
+.contact-form :is(input, select, textarea) {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+.contact-form :is(input, select, textarea):hover {
+  border-bottom-color: var(--fg-faint) !important;
+}
+.contact-form :is(input, select, textarea):focus,
+.contact-form :is(input, select, textarea):focus-visible {
+  border-bottom-color: var(--accent) !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+.contact-form :is(input, select, textarea):invalid,
+.contact-form :is(input, select, textarea):user-invalid {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.contact-form textarea,
+.contact-form textarea:hover,
+.contact-form textarea:focus,
+.contact-form textarea:focus-visible {
+  border: 1px solid var(--accent) !important;
+  border-radius: 2px !important;
+}
+.contact-select-trigger,
+.contact-select-trigger:focus,
+.contact-select-trigger:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /*
  * Scroll reveals (AnimatedSection.tsx). Server HTML ships fully visible;
  * the client marks below-fold blocks "pending" and an IntersectionObserver

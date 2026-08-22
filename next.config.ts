@@ -9,8 +9,10 @@ const nextConfig: NextConfig = {
     // Removed pages (Aug 2026): keep old bookmarks/links working.
     // Non-permanent so the URLs can come back if the pages return.
     return [
-      { source: "/schedule", destination: "/sponsorship#events", permanent: false },
+      { source: "/schedule", destination: "/", permanent: false },
       { source: "/resources", destination: "/", permanent: false },
+      // Prospectus PDFs in circulation link here; send sponsors to the contact form.
+      { source: "/sponsorship", destination: "/#contact", permanent: false },
     ];
   },
 };

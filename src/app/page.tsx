@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { Mail } from "lucide-react";
 import {
   AnimatedSection,
   Parallax,
@@ -9,8 +9,9 @@ import { FallEventsList } from "@/components/FallEventsList";
 import { LinkButton } from "@/components/LinkButton";
 import { GemCanvas } from "@/components/HeroVisuals";
 import { ScrambleText } from "@/components/ScrambleText";
-import { DiscordIcon } from "@/components/BrandIcons";
+import { DiscordIcon, InstagramIcon } from "@/components/BrandIcons";
 import { Section } from "@/components/Section";
+import { ContactForm } from "@/components/ContactForm";
 import { site } from "@/content/site";
 
 /** The club's public-facing program, distilled from the full event plan. */
@@ -104,18 +105,61 @@ export default function Home() {
         <FallEventsList />
       </Section>
 
-      {/* ── Partners ──────────────────────────────────────────── */}
+      {/* ── Contact ───────────────────────────────────────────── */}
       <Section
-        title="Partner with us"
-        intro="Our contests and training sessions reach McGill's strongest algorithmic problem-solvers. Tiers, single-event options, and the full prospectus are on the sponsorship page."
+        id="contact"
+        title="Contact us"
+        intro="Questions about the club, an event, a collaboration, or sponsorship? Send us a note and our team will get back to you."
         tone="surface"
-        flush
       >
-        <AnimatedSection>
-          <LinkButton href="/sponsorship" variant="primary">
-            become a sponsor <ArrowRight size={15} />
-          </LinkButton>
-        </AnimatedSection>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-12">
+          <AnimatedSection delay={0.08}>
+            <ContactForm />
+          </AnimatedSection>
+          <AnimatedSection className="border-t border-line pt-10 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
+            <aside>
+              <h3 className="font-display text-xl tracking-tight">
+                Other ways to reach us
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-fg-muted">
+                We typically reply within two to three business days.
+              </p>
+              <div className="mt-8 space-y-7">
+                <div>
+                  <p className="kicker">email</p>
+                  <a
+                    className="mt-2 inline-flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-fg"
+                    href={`mailto:${site.links.email}`}
+                  >
+                    <Mail size={15} /> {site.links.email}
+                  </a>
+                </div>
+                <div>
+                  <p className="kicker">community</p>
+                  <a
+                    className="mt-2 inline-flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-fg"
+                    href={site.links.discord}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <DiscordIcon width={15} height={15} /> Join our Discord
+                  </a>
+                </div>
+                <div>
+                  <p className="kicker">updates</p>
+                  <a
+                    className="mt-2 inline-flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-fg"
+                    href={site.links.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <InstagramIcon width={15} height={15} /> Follow us on Instagram
+                  </a>
+                </div>
+              </div>
+            </aside>
+          </AnimatedSection>
+        </div>
       </Section>
     </>
   );

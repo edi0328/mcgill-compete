@@ -35,8 +35,6 @@ export const site = {
    */
   calendarEmbedUrl: "[GOOGLE_CALENDAR_EMBED_URL]",
 
-  /** Shown in the "Partner with us" strip and on /sponsorship. */
-  sponsorshipEmail: "compete.external@gmail.com",
 };
 
 /** The weekly rhythm table on the Schedule page. */

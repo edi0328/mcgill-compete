@@ -1,3 +1,5 @@
+// Archived on 2026-08-21. This file is intentionally outside src/app so it
+// cannot become a public route. The prospectus PDF URL remains unchanged.
 import type { Metadata } from "next";
 import { FileText, Mail } from "lucide-react";
 import {
