@@ -147,7 +147,7 @@ class Hash:  # random-base polynomial hash mod 2^61 - 1
     topic: "Strings",
     complexity: "O(|s|) per operation",
     description:
-      "Prefix tree over a fixed alphabet: insert and look up strings in time proportional to their length. The base structure for prefix counting, XOR-maximization (over bits), and DP over dictionaries.",
+      "Prefix tree over a fixed alphabet: insert and look up strings in time proportional to their length. The base structure to extend for prefix counting, XOR-maximization (over bits), and DP over dictionaries.",
     exampleProblem: {
       name: "CSES: Word Combinations",
       url: "https://cses.fi/problemset/task/1731",

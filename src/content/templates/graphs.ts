@@ -296,14 +296,16 @@ vector<long long> bellman_ford(int n, int src,
     },
     code: {
       cpp: `// dist = adjacency matrix: 0 on the diagonal, INF where no edge
-// (use INF ~ LLONG_MAX / 4 so additions cannot overflow)
+const long long INF = LLONG_MAX / 4;
 void floyd_warshall(vector<vector<long long>>& dist) {
     int n = dist.size();
     for (int k = 0; k < n; k++)
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-                if (dist[i][k] + dist[k][j] < dist[i][j])
+        for (int i = 0; i < n; i++) {
+            if (dist[i][k] >= INF) continue;
+            for (int j = 0; j < n; j++)  // guards keep unreachable exactly INF
+                if (dist[k][j] < INF && dist[i][k] + dist[k][j] < dist[i][j])
                     dist[i][j] = dist[i][k] + dist[k][j];
+        }
 }
 // negative cycle through i afterwards: dist[i][i] < 0`,
       python: `def floyd_warshall(dist):

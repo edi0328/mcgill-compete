@@ -7,7 +7,7 @@ export const trees: AlgoTemplate[] = [
     topic: "Tree Algorithms",
     complexity: "O(log n) per query",
     description:
-      "Lowest common ancestor with binary lifting: up[j][v] is the 2^j-th ancestor of v, built in O(n log n), queried in O(log n). Also gives k-th ancestor and tree distances. Built iteratively, so deep trees are safe.",
+      "Lowest common ancestor with binary lifting: up[j][v] is the 2^j-th ancestor of v, built in O(n log n), queried in O(log n). Also gives tree distances, and the up table extends to k-th ancestor queries in a few lines. Built iteratively, so deep trees are safe.",
     exampleProblem: {
       name: "CSES: Company Queries II",
       url: "https://cses.fi/problemset/task/1688",
@@ -110,36 +110,33 @@ export const trees: AlgoTemplate[] = [
     topic: "Tree Algorithms",
     complexity: "O(log² n) per path query",
     description:
-      "Splits a tree into chains so that any root-to-node path crosses O(log n) of them, mapping each chain to a contiguous range of positions. Layer a segment tree over those positions and you can query or update values along any u–v path. The heavyweight tool for path queries on trees.",
+      "Splits a tree into chains so that any root-to-node path crosses O(log n) of them, mapping each chain to a contiguous range of positions. Layer a segment tree over those positions and you can query or update values along any u-v path. Subtrees stay contiguous too, and lca comes for free. The heavyweight tool for path queries on trees.",
     exampleProblem: {
       name: "CSES: Path Queries II",
       url: "https://cses.fi/problemset/task/2134",
       note: "Point updates and maximum on the path between two nodes: put node values at pos[u] in a max segment tree and fold it over each (l, r) range the decomposition yields.",
     },
     code: {
-      cpp: `// Pair with a segment tree over pos[] (e.g. max). Path values live at
-// pos[u]. Recursive DFS: raise the stack limit or rewrite iteratively
-// for n ~ 2e5 on judges with small stacks.
+      cpp: `// Pair with a segment tree over pos[]: node u's value lives at pos[u].
+// Subtree of u = positions [pos[u], pos[u] + sz[u] - 1].
 struct HLD {
     int n, timer = 0;
     vector<vector<int>> adj;
-    vector<int> parent, depth, heavy, head, pos;
-    HLD(vector<vector<int>>& g)
-        : n(g.size()), adj(g), parent(n, -1), depth(n),
+    vector<int> parent, depth, sz, heavy, head, pos;
+    HLD(vector<vector<int>>& g, int root = 0)
+        : n(g.size()), adj(g), parent(n, -1), depth(n), sz(n, 1),
           heavy(n, -1), head(n), pos(n) {
-        dfs(0);
-        decompose(0, 0);
+        dfs(root);
+        decompose(root, root);
     }
-    int dfs(int u) {
-        int size = 1, maxSub = 0;
+    void dfs(int u) {
         for (int v : adj[u])
             if (v != parent[u]) {
                 parent[v] = u, depth[v] = depth[u] + 1;
-                int sub = dfs(v);
-                size += sub;
-                if (sub > maxSub) maxSub = sub, heavy[u] = v;
+                dfs(v);
+                sz[u] += sz[v];
+                if (heavy[u] == -1 || sz[v] > sz[heavy[u]]) heavy[u] = v;
             }
-        return size;
     }
     void decompose(int u, int h) {
         head[u] = h, pos[u] = timer++;
@@ -147,29 +144,36 @@ struct HLD {
         for (int v : adj[u])
             if (v != parent[u] && v != heavy[u]) decompose(v, v);
     }
-    // calls op(l, r) for O(log n) ranges covering the u-v path
+    // calls op(l, r) for O(log n) inclusive ranges covering the u-v path,
+    // e.g. process_path(u, v, [&](int l, int r) { res = max(res, st.query(l, r + 1)); });
     template <class F>
-    void processPath(int u, int v, F op) {
+    void process_path(int u, int v, F op) {
         for (; head[u] != head[v]; v = parent[head[v]]) {
             if (depth[head[u]] > depth[head[v]]) swap(u, v);
             op(pos[head[v]], pos[v]);
         }
         if (depth[u] > depth[v]) swap(u, v);
-        op(pos[u], pos[v]);
+        op(pos[u], pos[v]);  // for edge values use op(pos[u] + 1, pos[v])
+    }
+    int lca(int u, int v) {
+        for (; head[u] != head[v]; v = parent[head[v]])
+            if (depth[head[u]] > depth[head[v]]) swap(u, v);
+        return depth[u] < depth[v] ? u : v;
     }
 };`,
       python: `class HLD:
-    """Pair with a segment tree over pos[] (e.g. max). Iterative, so deep
-    trees are safe without touching the recursion limit."""
+    """Pair with a segment tree over pos[]: node u's value lives at pos[u].
+    Subtree of u = positions [pos[u], pos[u] + sz[u] - 1].
+    Iterative, so deep trees are safe without touching the recursion limit."""
 
     def __init__(self, adj, root=0):
         n = len(adj)
         self.parent = [-1] * n
         self.depth = [0] * n
+        self.sz = [1] * n
         self.heavy = [-1] * n
         self.head = [0] * n
         self.pos = [0] * n
-        size = [1] * n
         order = []
         stack = [root]
         while stack:  # DFS preorder
@@ -183,21 +187,28 @@ struct HLD {
         for u in reversed(order):  # subtree sizes, heavy children
             for v in adj[u]:
                 if v != self.parent[u]:
-                    size[u] += size[v]
-                    if self.heavy[u] == -1 or size[v] > size[self.heavy[u]]:
+                    self.sz[u] += self.sz[v]
+                    if self.heavy[u] == -1 or self.sz[v] > self.sz[self.heavy[u]]:
                         self.heavy[u] = v
         timer = 0
-        for u in order:  # number each heavy chain contiguously
-            if self.parent[u] == -1 or self.heavy[self.parent[u]] != u:
-                h = u
-                while h != -1:
-                    self.head[h] = u
-                    self.pos[h] = timer
-                    timer += 1
-                    h = self.heavy[h]
+        self.head[root] = root
+        stack = [root]
+        while stack:  # heavy-first preorder: chains and subtrees contiguous
+            u = stack.pop()
+            self.pos[u] = timer
+            timer += 1
+            for v in adj[u]:  # light children start new chains
+                if v != self.parent[u] and v != self.heavy[u]:
+                    self.head[v] = v
+                    stack.append(v)
+            if self.heavy[u] != -1:  # pushed last, so popped right after u
+                self.head[self.heavy[u]] = self.head[u]
+                stack.append(self.heavy[u])
 
     def path_ranges(self, u, v):
-        """Yields O(log n) (l, r) ranges covering the u-v path."""
+        """Yields O(log n) inclusive (l, r) ranges covering the u-v path,
+        e.g. res = max(st.query(l, r + 1) for l, r in hld.path_ranges(u, v)).
+        For edge values, change the last yield to (pos[u] + 1, pos[v])."""
         while self.head[u] != self.head[v]:
             if self.depth[self.head[u]] < self.depth[self.head[v]]:
                 u, v = v, u
@@ -205,7 +216,15 @@ struct HLD {
             u = self.parent[self.head[u]]
         if self.depth[u] > self.depth[v]:
             u, v = v, u
-        yield (self.pos[u], self.pos[v])`,
+        yield (self.pos[u], self.pos[v])
+
+    def lca(self, u, v):
+        while self.head[u] != self.head[v]:
+            if self.depth[self.head[u]] > self.depth[self.head[v]]:
+                u = self.parent[self.head[u]]
+            else:
+                v = self.parent[self.head[v]]
+        return u if self.depth[u] < self.depth[v] else v`,
     },
   },
   {
@@ -400,17 +419,26 @@ vector<int> tree_centers(vector<vector<int>>& adj) {
     return centers;
 }
 // isomorphic (unrooted) iff the sorted center-id lists are equal`,
-      python: `import sys
-from collections import deque
-sys.setrecursionlimit(1 << 20)
+      python: `from collections import deque
 
 def tree_id(u, p, adj, canon):
-    # share one canon dict across all trees being compared
-    ids = sorted(tree_id(v, u, adj, canon) for v in adj[u] if v != p)
-    key = tuple(ids)
-    if key not in canon:
-        canon[key] = len(canon)
-    return canon[key]
+    """Share one canon dict across all trees being compared.
+    Iterative post-order, so deep trees are safe."""
+    res = {}
+    stack = [(u, p, False)]
+    while stack:
+        node, par, ready = stack.pop()
+        if ready:  # children done, intern this node's id
+            key = tuple(sorted(res[v] for v in adj[node] if v != par))
+            if key not in canon:
+                canon[key] = len(canon)
+            res[node] = canon[key]
+        else:
+            stack.append((node, par, True))
+            for v in adj[node]:
+                if v != par:
+                    stack.append((v, node, False))
+    return res[u]
 
 def tree_centers(adj):
     # unrooted trees: root at the center(s) (1 or 2 middle vertices)

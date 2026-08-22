@@ -293,7 +293,7 @@ struct LiChao {  // minimum at integer x in [lo, hi); sparse, big domains OK
         ll v = 1, l = lo, r = hi;
         while (true) {
             if (!line.count(v)) { line[v] = nw; return; }
-            ll mid = (l + r) / 2;
+            ll mid = l + (r - l) / 2;  // floor, safe for negative x
             if (val(nw, mid) < val(line[v], mid)) swap(nw, line[v]);
             if (r - l == 1) return;
             if (val(nw, l) < val(line[v], l)) { v = 2 * v; r = mid; }
@@ -306,7 +306,7 @@ struct LiChao {  // minimum at integer x in [lo, hi); sparse, big domains OK
         while (true) {
             if (line.count(v)) res = min(res, val(line[v], x));
             if (r - l == 1) return res;
-            ll mid = (l + r) / 2;
+            ll mid = l + (r - l) / 2;  // floor, safe for negative x
             if (x < mid) { v = 2 * v; r = mid; }
             else { v = 2 * v + 1; l = mid; }
         }

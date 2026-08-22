@@ -82,7 +82,7 @@ class Kuhn:  # left part 0..n-1, right part 0..m-1
     topic: "Matchings & Flows",
     complexity: "O(V²E), O(E√V) bipartite",
     description:
-      "Maximum flow with level-graph BFS plus blocking-flow DFS. Fast enough for essentially every contest flow problem, and on unit-capacity bipartite graphs it doubles as an O(E√V) matching algorithm. Edges are stored in pairs so edge id^1 is always the reverse edge.",
+      "Maximum flow with level-graph BFS plus blocking-flow DFS. The DFS pushes every augmenting path in one pass and prunes dead vertices, which is the standard optimized version. Fast enough for essentially every contest flow problem, and on unit-capacity bipartite graphs it doubles as an O(E√V) matching algorithm. Edges are stored in pairs so edge id^1 is always the reverse edge, and after max_flow the vertices with level != -1 form the source side of a minimum cut.",
     exampleProblem: {
       name: "CSES: Download Speed",
       url: "https://cses.fi/problemset/task/1694",
@@ -115,28 +115,29 @@ class Kuhn:  # left part 0..n-1, right part 0..m-1
         }
         return level[t] != -1;
     }
-    long long dfs(int u, int t, long long f) {
-        if (u == t) return f;
+    long long dfs(int u, int t, long long f) {  // pushes a blocking flow
+        if (u == t || f == 0) return f;
+        long long pushed = 0;
         for (int& i = it[u]; i < (int)g[u].size(); i++) {
             int id = g[u][i], v = edges[id].to;
-            if (edges[id].cap > 0 && level[v] == level[u] + 1) {
-                long long d = dfs(v, t, min(f, edges[id].cap));
-                if (d > 0) {
-                    edges[id].cap -= d;
-                    edges[id ^ 1].cap += d;
-                    return d;
-                }
-            }
+            if (edges[id].cap == 0 || level[v] != level[u] + 1) continue;
+            long long d = dfs(v, t, min(f - pushed, edges[id].cap));
+            edges[id].cap -= d;
+            edges[id ^ 1].cap += d;
+            pushed += d;
+            if (pushed == f) return pushed;
         }
-        return 0;
+        if (pushed == 0) level[u] = -1;  // dead end, prune
+        return pushed;
     }
     long long max_flow(int s, int t) {
         long long flow = 0;
         while (bfs(s, t)) {
             fill(it.begin(), it.end(), 0);
-            while (long long d = dfs(s, t, LLONG_MAX)) flow += d;
+            flow += dfs(s, t, LLONG_MAX);
         }
         return flow;
+        // min cut: vertices with level != -1 are the source side
     }
 };`,
       python: `import sys
@@ -166,31 +167,32 @@ class Dinic:
                     q.append(self.to[i])
         return self.level[t] != -1
 
-    def _dfs(self, u, t, f):
-        if u == t:
+    def _dfs(self, u, t, f):  # pushes a blocking flow
+        if u == t or f == 0:
             return f
+        pushed = 0
         while self.it[u] < len(self.g[u]):
             i = self.g[u][self.it[u]]
             v = self.to[i]
             if self.cap[i] > 0 and self.level[v] == self.level[u] + 1:
-                d = self._dfs(v, t, min(f, self.cap[i]))
-                if d > 0:
-                    self.cap[i] -= d
-                    self.cap[i ^ 1] += d
-                    return d
+                d = self._dfs(v, t, min(f - pushed, self.cap[i]))
+                self.cap[i] -= d
+                self.cap[i ^ 1] += d
+                pushed += d
+                if pushed == f:
+                    return pushed
             self.it[u] += 1
-        return 0
+        if pushed == 0:
+            self.level[u] = -1  # dead end, prune
+        return pushed
 
     def max_flow(self, s, t):
         flow = 0
-        INF = float("inf")
         while self._bfs(s, t):
             self.it = [0] * self.n
-            d = self._dfs(s, t, INF)
-            while d > 0:
-                flow += d
-                d = self._dfs(s, t, INF)
-        return flow`,
+            flow += self._dfs(s, t, float("inf"))
+        return flow
+        # min cut: vertices with level != -1 are the source side`,
     },
   },
   {

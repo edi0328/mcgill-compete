@@ -60,7 +60,7 @@ export const dataStructures: AlgoTemplate[] = [
     topic: "Range Queries",
     complexity: "O(log n) per query",
     description:
-      "Point updates and range queries over any associative operation (min, max, sum, gcd, ...). This is the compact iterative (bottom-up) version. Swap the two combine lines to change the operation. Reach for it when a Fenwick tree isn't enough (min/max, non-invertible operations).",
+      "Point updates and range queries over any associative operation (min, max, sum, gcd, ...). This is the compact iterative (bottom-up) version, with O(n) construction from an initial array. Swap the combine lines to change the operation. Reach for it when a Fenwick tree isn't enough (min/max, non-invertible operations).",
     exampleProblem: {
       name: "CSES: Dynamic Range Minimum Queries",
       url: "https://cses.fi/problemset/task/1649",
@@ -71,6 +71,11 @@ export const dataStructures: AlgoTemplate[] = [
     int n;
     vector<long long> t;
     SegTree(int n) : n(n), t(2 * n, 0) {}
+    SegTree(const vector<long long>& a) : n(a.size()), t(2 * a.size()) {
+        copy(a.begin(), a.end(), t.begin() + n);
+        for (int i = n - 1; i > 0; i--)
+            t[i] = t[2 * i] + t[2 * i + 1];  // combine
+    }
     void update(int i, long long v) {  // set a[i] = v
         for (t[i += n] = v; i > 1; i >>= 1)
             t[i >> 1] = t[i] + t[i ^ 1];  // combine
@@ -85,9 +90,13 @@ export const dataStructures: AlgoTemplate[] = [
     }
 };`,
       python: `class SegTree:  # point update, range query on [l, r)
-    def __init__(self, n):
-        self.n = n
-        self.t = [0] * (2 * n)  # 0 = identity of the combine
+    def __init__(self, a):  # a = initial list, or an int n for all zeros
+        if isinstance(a, int):
+            a = [0] * a
+        self.n = n = len(a)
+        self.t = t = [0] * n + list(a)
+        for i in range(n - 1, 0, -1):
+            t[i] = t[2 * i] + t[2 * i + 1]  # combine
 
     def update(self, i, v):  # set a[i] = v
         i += self.n
